@@ -1,0 +1,750 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>El Geek Marketer</title>
+<meta name="description" content="el geek. Lo complicado del marketing, explicado con peras y manzanas: e-commerce, equipos de marketing, apps con IA y charlas.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@500;600;700;800&family=Space+Grotesk:wght@400;500;700&display=swap">
+<style>
+/* ===== tokens el geek. (de tokens.json del sistema de diseño) ===== */
+:root{
+  --marca-verde:#00BF63; --marca-verde-profundo:#00A055; --marca-verde-texto:#007A40;
+  --marca-lima:#C1FF72; --marca-tinta:#0B1A14; --marca-tinta-2:#13261E;
+  --marca-blanco:#FFFFFF; --marca-crema:#F2EFE6; --marca-gris-texto:#5B6E66;
+  --marca-gris-claro:#9DB0A8; --marca-borde:#DCE8E1; --marca-borde-oscuro:#2A4036;
+  --font-display:Poppins,"Helvetica Neue",Arial,sans-serif;
+  --font-tecnica:"Space Grotesk","SF Mono",ui-monospace,sans-serif;
+  --font-cuerpo:Inter,system-ui,-apple-system,sans-serif;
+  --font-serif:Georgia,"Times New Roman",serif;
+  --space-1:4px;--space-2:8px;--space-3:12px;--space-4:16px;--space-6:24px;--space-8:32px;--space-12:48px;--space-16:64px;--space-24:96px;--space-32:128px;
+  --radius-0:0px;--radius-s:6px;--radius-m:16px;--radius-l:32px;--radius-pill:999px;
+  --punto:.28em;
+  /* tema claro por defecto */
+  --fondo:#F2EFE6; --fondo-alt:#FFFFFF; --texto:#0B1A14; --texto-suave:#5B6E66; --acento:#007A40;
+  --resaltado:#C1FF72; --sobre-resaltado:#0B1A14; --accion:#0B1A14; --sobre-accion:#FFFFFF;
+  --linea:#DCE8E1; --linea-control:#5B6E66; --foco:#007A40;
+}
+[data-theme="claro"]{--fondo:#F2EFE6;--fondo-alt:#FFFFFF;--texto:#0B1A14;--texto-suave:#5B6E66;--acento:#007A40;--accion:#0B1A14;--sobre-accion:#FFFFFF;--linea:#DCE8E1;--linea-control:#5B6E66;--foco:#007A40}
+[data-theme="blanco"]{--fondo:#FFFFFF;--fondo-alt:#F2EFE6;--texto:#0B1A14;--texto-suave:#5B6E66;--acento:#007A40;--accion:#0B1A14;--sobre-accion:#FFFFFF;--linea:#DCE8E1;--linea-control:#5B6E66;--foco:#007A40}
+[data-theme="oscuro"]{--fondo:#0B1A14;--fondo-alt:#13261E;--texto:#FFFFFF;--texto-suave:#9DB0A8;--acento:#C1FF72;--accion:#C1FF72;--sobre-accion:#0B1A14;--linea:#2A4036;--linea-control:#9DB0A8;--foco:#C1FF72;color-scheme:dark}
+[data-theme="verde"]{--fondo:#00BF63;--fondo-alt:#FFFFFF;--texto:#0B1A14;--texto-suave:#0A2E1E;--acento:#0B1A14;--accion:#0B1A14;--sobre-accion:#FFFFFF;--linea:#00A055;--linea-control:#0B1A14;--foco:#0B1A14}
+
+/* ============================================================
+   el geek. — componentes CSS (prefijo eg-)
+   Requiere tokens.css. Temas: data-theme="claro|oscuro|verde"
+   en cualquier contenedor (lienzo, sección, página).
+   ============================================================ */
+
+.social-kicker, .video-rol, .web-etiqueta { text-transform: uppercase; }
+
+/* ---------- 1. El punto: la firma ---------- */
+.eg-punto {
+  display: inline-block;
+  width: var(--punto); height: var(--punto);
+  background: var(--marca-lima);
+  margin-left: .04em;
+  vertical-align: baseline;
+  border-radius: var(--radius-0);
+}
+.eg-punto--acento { background: var(--acento); }
+.eg-punto--tinta { background: var(--marca-tinta); }
+.eg-punto--cursor { animation: eg-parpadeo 1.05s steps(1) infinite; }
+@keyframes eg-parpadeo { 50% { opacity: 0; } }
+
+/* Titular que termina con el punto del logotipo en vez de "." */
+.eg-cierre-punto::after {
+  content: ""; display: inline-block;
+  width: var(--punto); height: var(--punto);
+  background: var(--marca-lima); margin-left: .05em;
+}
+[data-theme="claro"] .eg-cierre-punto::after,
+.eg-cierre-punto--verde::after { background: var(--marca-verde); }
+
+/* ---------- 2. Highlight de frase clave (1 por pieza) ---------- */
+.eg-resaltado {
+  position: relative; white-space: nowrap;
+  color: var(--sobre-resaltado);
+  background: linear-gradient(transparent .14em, var(--resaltado) .14em, var(--resaltado) calc(100% - .06em), transparent calc(100% - .06em));
+  padding: 0 .12em; margin: 0 .12em;
+}
+.eg-resaltado::before, .eg-resaltado::after {
+  content: ""; position: absolute; width: .14em; height: .14em;
+  background: var(--acento);
+}
+.eg-resaltado::before { left: -.2em; top: .08em; }
+.eg-resaltado::after { right: -.2em; bottom: .06em; }
+[data-theme="verde"] .eg-resaltado::before,
+[data-theme="verde"] .eg-resaltado::after { background: var(--marca-tinta); }
+
+/* Palabra de color (sin caja) – variante tipo "creatividad" */
+.eg-color { color: var(--acento); }
+[data-theme="oscuro"] .eg-color { color: var(--marca-lima); }
+
+/* Palabra en serif itálica (modo editorial) */
+.eg-serif { font-family: var(--font-serif); font-style: italic; font-weight: 500; letter-spacing: -.02em; }
+
+/* ---------- 3. Lienzos ---------- */
+.eg-lienzo {
+  position: relative; box-sizing: border-box; overflow: hidden;
+  width: 1080px; height: 1350px; padding: var(--space-24);
+  background: var(--fondo); color: var(--texto);
+  font-family: var(--font-cuerpo);
+  display: flex; flex-direction: column;
+}
+.eg-lienzo *, .eg-lienzo *::before, .eg-lienzo *::after { box-sizing: border-box; }
+.eg-lienzo--post { height: 1080px; }
+.eg-lienzo--story { height: 1920px; padding: 250px var(--space-24); }
+.eg-lienzo--yt { width: 1280px; height: 720px; padding: 64px; }
+.eg-lienzo--banner { width: 2560px; height: 1440px; padding: 0; align-items: center; justify-content: center; }
+.eg-lienzo--video { width: 1920px; height: 1080px; padding: 0; background: transparent; }
+.eg-lienzo p, .eg-lienzo h1, .eg-lienzo h2, .eg-lienzo h3 { margin: 0; }
+
+/* Retícula geek (hairlines a 108px = 10 columnas en 1080) */
+.eg-reticula {
+  background-image:
+    linear-gradient(var(--linea) 2px, transparent 2px),
+    linear-gradient(90deg, var(--linea) 2px, transparent 2px);
+  background-size: 108px 108px; background-position: -1px -1px;
+}
+.eg-reticula--puntos {
+  background-image: radial-gradient(var(--linea) 3px, transparent 3.5px);
+  background-size: 54px 54px;
+}
+
+/* Header y footer universales del slide */
+.eg-slide-header, .eg-slide-footer {
+  display: flex; align-items: center; justify-content: space-between;
+  font-family: var(--font-tecnica); font-size: 24px; font-weight: 500;
+  letter-spacing: .08em; color: var(--texto-suave);
+}
+.eg-slide-header { padding-bottom: 28px; border-bottom: 2px solid var(--linea); }
+.eg-slide-footer { margin-top: auto; padding-top: 28px; }
+.eg-slide-header .eg-logo { height: 34px; }
+.eg-cuerpo-slide { flex: 1; display: flex; flex-direction: column; justify-content: center; gap: var(--space-12); }
+.eg-cuerpo-slide--abajo { justify-content: flex-end; padding-bottom: var(--space-16); }
+
+.eg-contador {
+  display: inline-flex; align-items: center; gap: .6em;
+  font-family: var(--font-tecnica); font-weight: 500; font-size: 24px; letter-spacing: .1em;
+  border: 2px solid var(--linea-control); color: var(--texto);
+  border-radius: var(--radius-pill); padding: 12px 24px;
+}
+.eg-contador b { font-weight: 700; }
+.eg-siguiente {
+  width: 96px; height: 96px; border-radius: var(--radius-pill);
+  background: var(--accion); color: var(--sobre-accion);
+  display: inline-flex; align-items: center; justify-content: center;
+  font-family: var(--font-display); font-size: 44px; font-weight: 600; line-height: 1;
+}
+[data-theme="claro"] .eg-siguiente { color: var(--marca-lima); }
+
+/* Kicker con punto */
+.eg-kicker {
+  display: inline-flex; align-items: center; gap: .6em;
+  font-family: var(--font-tecnica); font-weight: 700; text-transform: uppercase;
+  letter-spacing: .14em; font-size: 26px; color: var(--acento);
+}
+.eg-kicker::before { content: ""; width: .62em; height: .62em; background: currentColor; }
+
+/* ---------- 4. Piezas de contenido ---------- */
+.eg-lista-flechas { list-style: none; padding: 0; margin: 0; display: grid; gap: 28px; }
+.eg-lista-flechas li {
+  display: grid; grid-template-columns: 64px 1fr; align-items: baseline;
+  font-family: var(--font-display); font-weight: 600; font-size: 50px; line-height: 1.12; letter-spacing: -.02em;
+}
+.eg-lista-flechas li::before { content: "→"; color: var(--acento); font-weight: 700; }
+
+.eg-tarjeta-social {
+  background: var(--fondo-alt); color: var(--texto);
+  border-radius: var(--radius-l); padding: var(--space-16);
+  font-family: var(--font-display); font-weight: 700; font-size: 52px; line-height: 1.1; letter-spacing: -.02em;
+}
+.eg-tarjeta-social--tinta { background: var(--marca-tinta); color: var(--marca-blanco); }
+.eg-fila {
+  display: grid; grid-template-columns: 300px 1fr; gap: 32px; align-items: baseline;
+  background: var(--fondo-alt); border-radius: var(--radius-l); padding: 40px 48px;
+}
+.eg-fila dt { font-family: var(--font-tecnica); font-weight: 700; font-size: 26px; letter-spacing: .14em; color: var(--acento); text-transform: uppercase; }
+.eg-fila dd { margin: 0; font-family: var(--font-display); font-size: 40px; font-weight: 600; line-height: 1.15; letter-spacing: -.015em; }
+
+.eg-pill {
+  display: inline-flex; align-items: center; border: 2px solid var(--linea-control);
+  border-radius: var(--radius-pill); padding: 14px 30px; color: var(--texto);
+  font-family: var(--font-tecnica); font-weight: 500; font-size: 28px; letter-spacing: .02em;
+}
+.eg-pill--activa { background: var(--accion); color: var(--sobre-accion); border-color: var(--accion); }
+
+/* Caja de selección tipo herramienta de diseño (handles cuadrados) */
+.eg-seleccion { position: relative; display: inline-block; padding: 36px 44px; border: 3px solid var(--acento); }
+.eg-seleccion > i {
+  position: absolute; width: 22px; height: 22px; background: var(--fondo); border: 3px solid var(--acento);
+}
+.eg-seleccion > i:nth-of-type(1) { left: -12px; top: -12px; }
+.eg-seleccion > i:nth-of-type(2) { right: -12px; top: -12px; }
+.eg-seleccion > i:nth-of-type(3) { left: -12px; bottom: -12px; }
+.eg-seleccion > i:nth-of-type(4) { right: -12px; bottom: -12px; }
+.eg-seleccion__medida {
+  position: absolute; left: 50%; bottom: -64px; transform: translateX(-50%);
+  background: var(--acento); color: var(--fondo);
+  font-family: var(--font-tecnica); font-size: 22px; font-weight: 700; letter-spacing: .06em; padding: 6px 14px; white-space: nowrap;
+}
+
+/* Anotación con corchete bajo una frase */
+.eg-anotado { display: inline-flex; flex-direction: column; align-items: stretch; }
+.eg-anotado__corchete {
+  height: 22px; margin-top: 18px; border: 2px solid var(--texto-suave); border-top: 0; position: relative;
+}
+.eg-anotado__corchete::after {
+  content: ""; position: absolute; left: 50%; bottom: -20px; width: 2px; height: 20px; background: var(--texto-suave);
+}
+.eg-anotado__nota {
+  margin-top: 26px; text-align: center; font-family: var(--font-tecnica); font-size: 30px; font-weight: 500; color: var(--texto-suave);
+}
+
+/* ---------- 5. Video ---------- */
+.eg-lower {
+  position: absolute; left: 96px; bottom: 96px;
+  display: grid; grid-template-columns: auto 1fr; align-items: stretch; column-gap: 0;
+}
+.eg-lower__punto { width: 28px; background: var(--marca-lima); grid-row: 1 / span 2; }
+.eg-lower__nombre {
+  background: var(--marca-tinta); color: var(--marca-blanco);
+  font-family: var(--font-display); font-weight: 700; font-size: 46px; letter-spacing: -.02em; line-height: 1;
+  padding: 22px 36px 16px 28px; white-space: nowrap;
+}
+.eg-lower__rol {
+  justify-self: start; background: var(--marca-tinta-2); color: var(--marca-lima);
+  font-family: var(--font-tecnica); font-weight: 500; font-size: 26px; letter-spacing: .1em; text-transform: uppercase;
+  padding: 10px 28px 14px 28px; white-space: nowrap;
+}
+.eg-lower--verde .eg-lower__nombre { background: var(--marca-verde); color: var(--marca-tinta); }
+.eg-lower--verde .eg-lower__rol { background: var(--marca-tinta); }
+
+/* Animación de entrada: el punto aparece, se estira en barra, revela texto */
+.eg-lower--anim .eg-lower__punto { animation: eg-punto-in .35s cubic-bezier(.2,.9,.3,1.3) both; }
+.eg-lower--anim .eg-lower__nombre { animation: eg-barra .5s .3s cubic-bezier(.7,0,.2,1) both; }
+.eg-lower--anim .eg-lower__rol { animation: eg-barra .45s .55s cubic-bezier(.7,0,.2,1) both; }
+@keyframes eg-punto-in { from { transform: scale(0) rotate(-45deg); } to { transform: none; } }
+@keyframes eg-barra { from { clip-path: inset(0 100% 0 0); } to { clip-path: inset(0 0 0 0); } }
+
+.eg-subtitulo {
+  position: absolute; left: 50%; bottom: 150px; transform: translateX(-50%); width: max-content; max-width: 1500px;
+  text-align: center; font-family: var(--font-display); font-weight: 800; font-size: 62px; line-height: 1.12; letter-spacing: -.02em;
+  color: var(--marca-blanco);
+  text-shadow: 0 3px 0 var(--marca-tinta), 0 -3px 0 var(--marca-tinta), 3px 0 0 var(--marca-tinta), -3px 0 0 var(--marca-tinta), 0 0 18px rgba(11,26,20,.55);
+}
+.eg-subtitulo .activa { color: var(--marca-lima); }
+.eg-subtitulo--caja { text-shadow: none; }
+.eg-subtitulo--caja span.linea { background: var(--marca-tinta); padding: 4px 18px; border-radius: var(--radius-s); -webkit-box-decoration-break: clone; box-decoration-break: clone; }
+.eg-subtitulo--resaltado .activa { color: var(--marca-tinta); background: var(--marca-lima); text-shadow: none; padding: 0 .12em; }
+
+.eg-capitulo {
+  position: absolute; inset: 0; display: flex; flex-direction: column; justify-content: flex-end;
+  padding: 120px 140px; background: var(--fondo); color: var(--texto);
+}
+.eg-capitulo__num { font-family: var(--font-tecnica); font-weight: 700; font-size: 34px; letter-spacing: .14em; color: var(--acento); margin-bottom: 28px; }
+
+/* ---------- 6. Web ---------- */
+.eg-web { font-family: var(--font-cuerpo); background: var(--fondo); color: var(--texto); }
+.eg-boton {
+  display: inline-flex; align-items: center; gap: 10px; cursor: pointer;
+  font-family: var(--font-display); font-weight: 600; font-size: 16px; line-height: 1;
+  padding: 16px 24px; border-radius: var(--radius-s); border: 2px solid var(--accion);
+  background: var(--accion); color: var(--sobre-accion); text-decoration: none; white-space: nowrap;
+  transition: transform .15s ease, background .15s ease;
+}
+.eg-boton::after { content: "→"; color: var(--marca-lima); transition: transform .15s ease; }
+[data-theme="oscuro"] .eg-boton::after { color: var(--marca-tinta); }
+[data-theme="oscuro"] .eg-boton--secundario::after { color: var(--acento); }
+.eg-boton:hover::after { transform: translateX(4px); }
+.eg-boton:active { transform: translateY(1px); }
+.eg-boton:focus-visible, .eg-campo input:focus-visible { outline: 2px solid var(--foco); outline-offset: 2px; }
+.eg-boton--secundario { background: transparent; color: var(--texto); border-color: var(--linea-control); }
+.eg-boton--secundario::after { color: var(--acento); }
+.eg-boton--lima { background: var(--marca-lima); border-color: var(--marca-lima); color: var(--marca-tinta); }
+.eg-boton--lima::after { color: var(--marca-tinta); }
+.eg-boton[disabled] { opacity: .45; cursor: not-allowed; }
+
+.eg-campo { display: grid; gap: 8px; font-family: var(--font-cuerpo); }
+.eg-campo label { font-family: var(--font-tecnica); font-weight: 700; font-size: 13px; letter-spacing: .14em; text-transform: uppercase; color: var(--texto); }
+.eg-campo input {
+  font: 400 16px/1.4 var(--font-cuerpo); color: var(--texto); background: var(--fondo-alt);
+  border: 2px solid var(--linea-control); border-radius: var(--radius-s); padding: 13px 16px;
+}
+.eg-campo small { font-size: 14px; color: var(--texto-suave); }
+
+.eg-tarjeta {
+  background: var(--fondo-alt); border-radius: var(--radius-m); padding: var(--space-6);
+  display: grid; gap: 12px; align-content: start; border: 1px solid var(--linea);
+}
+.eg-tarjeta__num { font-family: var(--font-tecnica); font-weight: 700; font-size: 13px; letter-spacing: .14em; color: var(--acento); }
+.eg-tarjeta h3 { margin: 0; }
+.eg-tarjeta p { margin: 0; color: var(--texto-suave); }
+
+.eg-nav { display: flex; align-items: center; justify-content: space-between; gap: 24px; padding: 20px 0; }
+.eg-nav a:not(.eg-boton) { color: var(--texto); text-decoration: none; font: 500 15px/1 var(--font-cuerpo); }
+.eg-nav a:not(.eg-boton):hover { color: var(--acento); }
+
+/* Logo hidratado por bundle.js */
+.eg-logo { display: inline-block; height: 40px; width: auto; vertical-align: middle; }
+.eg-logo svg { height: 100%; width: auto; display: block; }
+
+@media (prefers-reduced-motion: reduce) {
+  .eg-punto--cursor, .eg-lower--anim * { animation: none !important; }
+}
+
+
+/* ===== página ===== */
+html{scroll-behavior:smooth}
+body{background:var(--marca-crema);color:var(--marca-tinta);font:400 17px/1.6 var(--font-cuerpo);-webkit-font-smoothing:antialiased}
+*{box-sizing:border-box}
+a{color:inherit}
+img{height:auto}
+h1,h2,h3,p{margin:0}
+h1,h2,h3{text-wrap:balance}
+.sec{background:var(--fondo);color:var(--texto);padding-inline:max(16px, calc((100vw - 1160px)/2));padding-block:var(--space-24)}
+.wrap{max-width:1160px;margin-inline:auto}
+.etq{font:700 13px/1.2 var(--font-tecnica);letter-spacing:.14em;text-transform:uppercase;color:var(--acento);display:inline-flex;align-items:center;gap:.6em}
+.etq::before{content:"";width:.62em;height:.62em;background:currentColor}
+.h2{font:700 clamp(32px,4.4vw,44px)/1.08 var(--font-display);letter-spacing:-.03em}
+.h3{font:600 22px/1.25 var(--font-display);letter-spacing:-.01em}
+.bajada{color:var(--texto-suave);max-width:60ch}
+.cab{display:grid;gap:var(--space-4);margin-bottom:var(--space-12);max-width:720px}
+.nota{font-size:14px;color:var(--texto-suave)}
+.pie-cta{font-size:14px;color:var(--texto-suave);margin-top:10px}
+
+/* nav */
+.nav{padding-inline:16px;position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:var(--fondo);border-bottom:1px solid var(--linea)}
+.nav .eg-nav{max-width:1160px;margin-inline:auto;padding-block:14px}
+.nav-links{display:flex;gap:24px;align-items:center}
+.nav-links a:not(.eg-boton){font:500 15px/1 var(--font-cuerpo);text-decoration:none}
+.nav-links a:not(.eg-boton):hover{color:var(--acento)}
+.nav .eg-boton{padding:11px 16px;font-size:15px}
+
+/* hero */
+.hero{padding-block:var(--space-16) var(--space-24)}
+.hero-grid{display:grid;grid-template-columns:1.25fr 1fr;gap:var(--space-16);align-items:center}
+.hero h1 .junto{white-space:nowrap}
+.hero h1{font:800 clamp(34px,5.6vw,68px)/1.02 var(--font-display);letter-spacing:-.045em;margin:20px 0 24px}
+.hero h1 .linea{display:block}
+.hero .bajada{font-size:19px;margin-bottom:32px}
+.botones{display:flex;flex-wrap:wrap;gap:12px}
+.foto-sel{position:relative;justify-self:center;width:min(100%,420px);margin:12px 12px 56px}
+.foto-sel.eg-seleccion{padding:0;display:block}
+.foto-sel img{display:block;width:100%;aspect-ratio:4/5;object-fit:cover;object-position:50% 18%}
+.foto-sel .eg-seleccion__medida{bottom:-44px;font-size:12px}
+.foto-sel > i{width:16px!important;height:16px!important}
+.foto-sel > i:nth-of-type(1){left:-9px!important;top:-9px!important}
+.foto-sel > i:nth-of-type(2){right:-9px!important;top:-9px!important}
+.foto-sel > i:nth-of-type(3){left:-9px!important;bottom:-9px!important}
+.foto-sel > i:nth-of-type(4){right:-9px!important;bottom:-9px!important}
+.foto-sel .cuadro{position:absolute;right:-22px;top:28px;width:44px;height:44px;background:var(--marca-lima)}
+.fondo-puntos{background-image:radial-gradient(var(--linea) 1.5px,transparent 2px);background-size:28px 28px}
+
+/* motion de marca: punto rebota, barra revela */
+.revela{display:inline-block;animation:eg-barra .6s .35s cubic-bezier(.7,0,.2,1) both}
+.revela-2{animation-delay:.55s}
+.punto-in{animation:eg-punto-in .38s .95s cubic-bezier(.2,.9,.3,1.3) both}
+@media (prefers-reduced-motion:reduce){.revela,.punto-in{animation:none}}
+
+/* prueba social */
+.prueba{padding-block:var(--space-12)}
+.prueba-grid{display:grid;grid-template-columns:1.6fr 1fr 1fr 1fr;border-top:2px solid var(--texto);}
+.marca{padding:20px 20px 4px 0;display:grid;gap:6px;align-content:start}
+.marca + .marca{padding-left:20px;border-left:1px solid var(--linea)}
+.marca b{font:800 clamp(20px,2.2vw,26px)/1.1 var(--font-display);letter-spacing:-.03em}
+.marca:first-child b{font-size:clamp(26px,3vw,36px)}
+.marca span{font-size:14px;color:var(--texto-suave);line-height:1.4}
+.marca .dato{font:700 12px/1.2 var(--font-tecnica);letter-spacing:.12em;text-transform:uppercase;color:var(--acento)}
+
+/* creencias */
+.creencias{display:grid;grid-template-columns:repeat(2,1fr);gap:var(--space-6)}
+.creencia{background:var(--fondo-alt);color:var(--marca-tinta);border-radius:var(--radius-m);padding:28px;display:grid;grid-template-columns:96px 1fr;gap:24px;align-items:start}
+.creencia svg{width:96px;height:96px;display:block}
+.creencia svg *{fill:none;stroke:var(--marca-tinta);stroke-width:2.5;stroke-linecap:square;stroke-linejoin:miter}
+.creencia svg .lima{fill:var(--marca-lima);stroke:var(--marca-tinta)}
+.creencia svg .verde{fill:var(--marca-verde);stroke:none}
+.creencia h3{margin-bottom:8px}
+.creencia p{color:var(--marca-gris-texto);font-size:16px}
+
+/* pilares */
+.pilares{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--space-6)}
+.pilar{padding:28px;gap:14px}
+.pilar[data-theme]{background:var(--fondo-alt);color:var(--texto);border-color:var(--linea)}
+.pilar .eg-boton.proximamente{opacity:.55;cursor:default}
+.pilar .eg-boton.proximamente::after{content:""}
+.pilar .eg-boton{margin-top:8px;justify-self:start;white-space:normal;line-height:1.25}
+.pilar ul{margin:0;padding:0;list-style:none;display:grid;gap:6px;font-size:15px;color:var(--texto-suave)}
+.pilar li::before{content:"→ ";color:var(--acento);font-weight:700}
+
+/* charlas */
+.charlas-grid{display:grid;grid-template-columns:1fr 1.15fr;gap:var(--space-16);align-items:start}
+.fotos-charla{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.fotos-charla img{width:100%;aspect-ratio:2/3;object-fit:cover;display:block}
+.fotos-charla img:first-child{object-position:50% 62%}
+.fotos-charla figcaption{grid-column:1/-1;font:500 12px/1.3 var(--font-tecnica);letter-spacing:.1em;text-transform:uppercase;color:var(--texto-suave)}
+.temas{list-style:none;padding:0;margin:24px 0 32px;display:grid;gap:14px}
+.temas li{display:grid;grid-template-columns:32px 1fr;font:600 19px/1.25 var(--font-display);letter-spacing:-.01em}
+.temas li::before{content:"→";color:var(--acento);font-weight:700}
+.form{display:grid;grid-template-columns:1fr 1fr;gap:16px;background:var(--fondo-alt);padding:24px;border-radius:var(--radius-m)}
+.form .eg-campo input{width:100%;background:var(--fondo)}
+.form .full{grid-column:1/-1}
+.form .eg-boton{justify-self:start}
+.form-ok{grid-column:1/-1;font-size:15px;color:var(--acento)}
+
+/* historia */
+.historia-grid{display:grid;grid-template-columns:1fr 1.1fr;gap:var(--space-16);align-items:start}
+.anecdota{font:600 clamp(22px,2.4vw,28px)/1.3 var(--font-display);letter-spacing:-.02em}
+.anecdota em{font-style:normal;color:var(--acento)}
+.historia-grid .bajada{margin-top:20px}
+.linea-tiempo{list-style:none;margin:0;padding:0;border-left:2px solid var(--texto)}
+.linea-tiempo li{position:relative;padding:0 0 26px 28px;display:grid;gap:2px}
+.linea-tiempo li::before{content:"";position:absolute;left:-7px;top:6px;width:12px;height:12px;background:var(--acento)}
+.linea-tiempo li:last-child{padding-bottom:0}
+.linea-tiempo li:last-child::before{background:var(--marca-verde);width:16px;height:16px;left:-9px}
+.linea-tiempo .anio{font:700 13px/1.2 var(--font-tecnica);letter-spacing:.14em;color:var(--acento)}
+.linea-tiempo b{font:600 18px/1.3 var(--font-display);letter-spacing:-.01em}
+.linea-tiempo span{font-size:15px;color:var(--texto-suave)}
+
+/* construido */
+.proyectos{display:grid;grid-template-columns:repeat(4,1fr);gap:var(--space-6)}
+.proyecto{border-top:2px solid var(--texto);padding-top:18px;display:grid;gap:8px;align-content:start}
+.proyecto .tipo{font:700 12px/1.2 var(--font-tecnica);letter-spacing:.12em;text-transform:uppercase;color:var(--acento)}
+.proyecto p{font-size:15px;color:var(--texto-suave)}
+
+/* fuera del trabajo */
+.fuera{display:grid;grid-template-columns:1.3fr 1fr;gap:var(--space-16);align-items:center}
+.fuera p.grande{font:600 clamp(22px,2.6vw,30px)/1.3 var(--font-display);letter-spacing:-.02em}
+.fichas{display:grid;gap:0;border-top:1px solid var(--linea)}
+.fichas div{display:grid;grid-template-columns:150px 1fr;gap:16px;padding:14px 0;border-bottom:1px solid var(--linea);font-size:16px}
+.fichas dt{font:700 12px/1.6 var(--font-tecnica);letter-spacing:.12em;text-transform:uppercase;color:var(--acento)}
+.fichas dd{margin:0}
+
+/* contacto */
+.contacto-grid{display:grid;grid-template-columns:1.1fr 1fr;gap:var(--space-16);align-items:center}
+.contacto h2{font:800 clamp(40px,5.6vw,68px)/1 var(--font-display);letter-spacing:-.045em}
+.correo{display:flex;flex-wrap:wrap;align-items:center;gap:12px;margin:28px 0 20px}
+.correo code{font:600 clamp(17px,2vw,22px)/1.2 var(--font-tecnica);background:var(--marca-blanco);padding:12px 16px;border-radius:var(--radius-s);user-select:all;word-break:break-all}
+.redes{display:flex;flex-wrap:wrap;gap:10px}
+.redes a{font:500 14px/1 var(--font-tecnica);letter-spacing:.04em;text-decoration:none;border:2px solid var(--marca-tinta);border-radius:var(--radius-pill);padding:10px 16px}
+.redes a:hover{background:var(--marca-tinta);color:var(--marca-lima)}
+.video-marca{width:100%;aspect-ratio:16/9;display:block;background:var(--marca-verde);outline:2px solid var(--marca-tinta);outline-offset:10px}
+
+footer.sec{padding-block:32px;font-size:14px}
+footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:16px;align-items:center;color:var(--texto-suave)}
+
+/* barra fija móvil */
+.barra-movil{display:none}
+
+@media (max-width:900px){
+  .hero-grid,.charlas-grid,.historia-grid,.fuera,.contacto-grid{grid-template-columns:1fr}
+  .prueba-grid{grid-template-columns:1fr 1fr}
+  .marca:nth-child(3){padding-left:0;border-left:0}
+  .marca{border-bottom:1px solid var(--linea);padding-bottom:16px}
+  .pilares{grid-template-columns:1fr}
+  .proyectos{grid-template-columns:1fr 1fr}
+  .creencias{grid-template-columns:1fr}
+  .nav-links a:not(.eg-boton){display:none}
+  .sec{padding-block:var(--space-16)}
+}
+@media (max-width:560px){
+  .creencia{grid-template-columns:1fr}
+  .hero h1{font-size:clamp(28px,8.6vw,40px)}
+  .creencia svg{width:72px;height:72px}
+  .proyectos{grid-template-columns:1fr}
+  .prueba-grid{grid-template-columns:1fr}
+  .marca + .marca{padding-left:0;border-left:0}
+  .form{grid-template-columns:1fr}
+  .fichas div{grid-template-columns:1fr;gap:2px}
+  .barra-movil{display:flex;position:fixed;left:0;right:0;bottom:0;z-index:30;padding:10px 16px calc(10px + env(safe-area-inset-bottom,0px));background:var(--marca-tinta);border-top:2px solid var(--marca-lima)}
+  .barra-movil .eg-boton{width:100%;justify-content:center}
+  footer.sec{padding-bottom:96px}
+}
+.form-embed{background:var(--fondo-alt);border-radius:var(--radius-m);padding:8px;min-height:120px}
+.form-embed iframe{display:block;width:100%;min-height:520px;border:0;border-radius:12px;background:#fff}
+.form-embed > .nota{padding:16px}
+</style>
+
+</head>
+<body>
+<header class="nav" data-theme="oscuro">
+  <nav class="eg-nav" aria-label="Principal">
+    <a href="#inicio" aria-label="el geek., inicio"><span data-eg-logo="blanco" style="height:28px"></span></a>
+    <div class="nav-links">
+      <a href="#creo">Lo que creo</a>
+      <a href="#hago">Lo que hago</a>
+      <a href="#historia">Historia</a>
+      <a class="eg-boton" href="#charlas">Invítame</a>
+    </div>
+  </nav>
+</header>
+
+<main>
+<!-- 1. HERO -->
+<section id="inicio" class="sec hero fondo-puntos" data-theme="oscuro">
+  <div class="wrap hero-grid">
+    <div>
+      <span class="etq">Hola, soy el geek</span>
+      <h1>
+        <span class="linea revela">Lo complicado del marketing,</span>
+        <span class="linea revela revela-2">explicado con <span class="junto"><span class="eg-resaltado">peras y manzanas</span><span class="eg-punto punto-in"></span></span></span>
+      </h1>
+      <p class="bajada">Te ayudo a vender en línea, a armar un equipo de marketing que sí funcione y a construir tu app con IA. Con ejemplos, pizarrón y cero humo.</p>
+      <div class="botones">
+        <a class="eg-boton" href="#hago">Ver lo que hago</a>
+        <a class="eg-boton eg-boton--secundario" href="#charlas">Invítame a una charla</a>
+      </div>
+    </div>
+    <figure class="foto-sel eg-seleccion">
+      <img src="img/hero.jpg" alt="Marcos, el geek, sonriendo sentado en un banco sobre fondo naranja" width="900" height="1339">
+      <span class="cuadro" aria-hidden="true"></span>
+      <i></i><i></i><i></i><i></i>
+      <span class="eg-seleccion__medida">EL GEEK · 10 AÑOS EN MARKETING</span>
+    </figure>
+  </div>
+</section>
+
+<!-- 2. PRUEBA SOCIAL -->
+<section class="sec prueba" data-theme="claro" aria-label="Dónde estoy hoy">
+  <div class="wrap">
+    <p class="etq" style="margin-bottom:16px">Hoy formo parte de</p>
+    <div class="prueba-grid">
+      <div class="marca"><span class="dato">Líder de Marketing</span><b>Envíosperros</b><span>Startup de envíos para e-commerce con más de 300 mil usuarios. 5 años aquí.</span></div>
+      <div class="marca"><span class="dato">Cofundador</span><b>Námbulo</b><span>Mi agencia de contenidos y estrategia digital.</span></div>
+      <div class="marca"><span class="dato">Socio y Director de Marketing</span><b>ANADIC MX</b><span>Asociación de empresas de tecnología de México.</span></div>
+      <div class="marca"><span class="dato">Partner oficial</span><b>Tiendanube</b><span>Te ayudo a abrir tu tienda en línea.</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- 3. LO QUE CREO -->
+<section id="creo" class="sec" data-theme="verde">
+  <div class="wrap">
+    <div class="cab">
+      <span class="etq">Lo que creo</span>
+      <h2 class="h2">Cuatro cosas que casi nadie dice en voz alta<span class="eg-punto eg-punto--tinta"></span></h2>
+    </div>
+    <div class="creencias">
+      <article class="creencia">
+        <svg viewBox="0 0 96 96" aria-hidden="true"><rect x="10" y="10" width="76" height="76"/><path d="M29 10v76M48 10v76M67 10v76M10 29h76M10 48h76M10 67h76"/><rect class="lima" x="48" y="29" width="19" height="19"/><path d="M20 76 L38 58"/><path d="M30 58h8v8"/></svg>
+        <div><h3 class="h3">Antes del jaque mate, las piezas en su lugar.</h3><p>Nadie gana una partida moviendo al azar. Elegir roles, proveedores y presupuesto importa tanto como publicar.</p></div>
+      </article>
+      <article class="creencia">
+        <svg viewBox="0 0 96 96" aria-hidden="true"><rect x="10" y="14" width="26" height="26"/><rect x="60" y="14" width="26" height="26"/><rect class="lima" x="35" y="58" width="26" height="26"/><path d="M36 27h24"/><path d="M54 21l6 6-6 6"/><path d="M73 40v31H61"/><path d="M67 65l-6 6 6 6"/><path d="M35 71H23V40"/><path d="M17 46l6-6 6 6"/></svg>
+        <div><h3 class="h3">Los mejores equipos piensan en sistemas.</h3><p>Si cada lunes haces lo mismo a mano, no te falta creatividad: te falta un sistema. Quítale fricción a lo repetitivo y te queda tiempo para crear.</p></div>
+      </article>
+      <article class="creencia">
+        <svg viewBox="0 0 96 96" aria-hidden="true"><path d="M22 30h52l-8 56H30z"/><path d="M22 30c0-14 52-14 52 0"/><rect class="lima" x="40" y="44" width="16" height="10"/><path d="M36 66v4M48 70v4M60 66v4"/><path d="M36 80v6M48 82v6M60 80v6"/></svg>
+        <div><h3 class="h3">Todos invierten en atraer; casi nadie en cuidar a los que ya tienen.</h3><p>Es como llenar una cubeta con hoyos. Primero tapa los hoyos: ahí se te está yendo el dinero.</p></div>
+      </article>
+      <article class="creencia">
+        <svg viewBox="0 0 96 96" aria-hidden="true"><path d="M12 50h52v8c0 12-8 20-20 20H32c-12 0-20-8-20-20z"/><path d="M64 54h22"/><rect class="lima" x="30" y="36" width="12" height="12"/><path d="M26 22c4 4-4 8 0 12M44 18c4 4-4 8 0 12"/></svg>
+        <div><h3 class="h3">Cualquiera puede cocinar.</h3><p>Como en Ratatouille: hoy cualquiera puede llevar su idea de app a la realidad. La idea y el criterio ya pesan más que saber programar.</p></div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- 4. LO QUE HAGO -->
+<section id="hago" class="sec" data-theme="claro">
+  <div class="wrap">
+    <div class="cab">
+      <span class="etq">Lo que hago</span>
+      <h2 class="h2">Tres cosas. No me salgo de ahí<span class="eg-punto eg-punto--acento"></span></h2>
+    </div>
+    <div class="pilares">
+      <article class="eg-tarjeta pilar" data-theme="blanco">
+        <span class="eg-tarjeta__num">E-COMMERCE · TIENDANUBE</span>
+        <h3 class="h3">Vende en línea</h3>
+        <p>¿Quieres abrir tu tienda y no sabes por dónde empezar? Desde Envíosperros veo todos los días cómo venden (y cómo envían) miles de tiendas en México.</p>
+        <ul><li>Tienda lista en Tiendanube</li><li>Envíos y logística sin sustos</li><li>Contenido y anuncios</li></ul>
+        <a class="eg-boton" href="https://www.tiendanube.com/partners/el-geek-marketer" target="_blank" rel="noopener">Abre tu tienda con 25% de descuento</a>
+        <p class="pie-cta">Con mi link de partner de Tiendanube.</p>
+      </article>
+      <article class="eg-tarjeta pilar" data-theme="blanco">
+        <span class="eg-tarjeta__num">EQUIPOS DE MARKETING</span>
+        <h3 class="h3">Arma tu equipo de marketing</h3>
+        <p>No te enseño a usar herramientas. Te ayudo a decidir: a quién contratar, qué pedirle y cómo saber si tu marketing funciona.</p>
+        <ul><li>Roles y perfiles correctos</li><li>Cómo filtrar proveedores y agencias</li><li>Diagnóstico de lo que sí necesitas</li></ul>
+        <a class="eg-boton" href="https://api.whatsapp.com/send?phone=522292666432&amp;text=Quiero%20que%20me%20ayudes%20a%20armar%20mi%20equipo%20de%20Marketing%20Geek,%20%C2%BFc%C3%B3mo%20le%20hacemos?" target="_blank" rel="noopener">Quiero el diagnóstico</a>
+        <p class="pie-cta">Me escribes por WhatsApp y lo platicamos.</p>
+      </article>
+      <article class="eg-tarjeta pilar" data-theme="oscuro">
+        <span class="eg-tarjeta__num">APPS CON IA · CURSO EN VIVO</span>
+        <h3 class="h3">Construye tu app con IA</h3>
+        <p>Sin ser programador. Construyo con Lovable y Claude, y lo enseño en un curso en vivo de 2 días: tú traes la idea, yo te guío.</p>
+        <ul><li>De idea a app funcionando</li><li>Grupo de WhatsApp de apoyo</li><li>Guías y tips durante el curso</li></ul>
+        <span class="eg-boton proximamente" aria-disabled="true">Próximamente</span>
+        <p class="pie-cta">Cupo de 20 personas.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- 5. CHARLAS -->
+<section id="charlas" class="sec" data-theme="oscuro">
+  <div class="wrap charlas-grid">
+    <figure class="fotos-charla" style="margin:0">
+      <img src="img/speaker-escenario.jpg" alt="El geek hablando frente al público en The Summit ANADIC MX 2026" loading="lazy" width="1000" height="1500">
+      <img src="img/speaker-cerca.jpg" alt="El geek con micrófono en el escenario de The Summit ANADIC MX 2026" loading="lazy" width="900" height="1350">
+      <figcaption>The Summit ANADIC MX 2026</figcaption>
+    </figure>
+    <div>
+      <span class="etq">Charlas</span>
+      <h2 class="h2" style="margin:16px 0">¿Quieres que dé una charla? Invítame y voy<span class="eg-punto"></span></h2>
+      <p class="bajada">Llevo el pizarrón, los ejemplos y los chistes. Tú pones a la audiencia. Preparo cada charla a la medida: universidades, empresas, asociaciones y eventos.</p>
+      <ul class="temas">
+        <li>Antes del jaque mate: arma tu equipo de marketing antes de invertir</li>
+        <li>10 años de marketing: qué cambió y qué viene</li>
+        <li>IA para equipos de marketing: qué sí y qué no</li>
+        <li>Cualquiera puede cocinar: construye tu app sin ser programador</li>
+        <li>Empezar a vender en línea en México</li>
+      </ul>
+      <div class="form-embed" id="form-charla">
+        <!-- PEGA AQUÍ EL IFRAME DE TU FORMULARIO (Brevo o monday). Ejemplo:
+        <iframe src="URL-DE-TU-FORMULARIO" title="Invítame a dar una charla" loading="lazy"></iframe>
+        -->
+        <p class="nota">Aquí va el formulario para invitarme a una charla.</p>
+      </div>
+      <p class="nota" style="margin-top:12px">Para universidades y asociaciones, sin costo (cupo limitado al mes).</p>
+    </div>
+  </div>
+</section>
+
+<!-- 6. HISTORIA -->
+<section id="historia" class="sec" data-theme="claro">
+  <div class="wrap historia-grid">
+    <div>
+      <span class="etq">Mi historia</span>
+      <h2 class="h2" style="margin:16px 0 28px">10 años entre marketing, emprendimiento y aulas<span class="eg-punto eg-punto--acento"></span></h2>
+      <p class="anecdota">Mi primer trabajo de marketing duró seis meses. Me corrieron. Nadie tenía claro qué hacía mi puesto y yo no sabía qué hacer sin liderazgo. <em>Crónica de una muerte anunciada.</em></p>
+      <p class="bajada">Ahí aprendí lo que hoy enseño: antes de mover una pieza, arma el tablero. Desde entonces vi llegar los anuncios segmentados, el e-commerce masivo, los creadores y la IA. Trabajé con equipos de desarrollo que me enseñaron a verlo todo en sistemas. Hoy traduzco ese cambio para que nadie se quede atrás.</p>
+    </div>
+    <ol class="linea-tiempo">
+      <li><span class="anio">2015</span><b>Primer trabajo en marketing</b><span>Una marca de abarrotes. Duré seis meses y me llevé la lección más cara.</span></li>
+      <li><span class="anio">2017</span><b>Profesor universitario</b><span>Gestalt, UVM y ESCI. Se aprende mucho enseñando.</span></li>
+      <li><span class="anio">2020</span><b>Cofundo Námbulo</b><span>Agencia de contenidos y estrategia digital.</span></li>
+      <li><span class="anio">2021</span><b>Entro a Envíosperros</b><span>Hoy soy líder de marketing de una startup con más de 300 mil usuarios.</span></li>
+      <li><span class="anio">2025</span><b>Fundo ucreators</b><span>Plataforma para el crecimiento de creadores.</span></li>
+      <li><span class="anio">2026</span><b>Cofundo Jappyrate</b><span>Encuestas y fidelización para restaurantes y hoteles.</span></li>
+      <li><span class="anio">Hoy</span><b>Partner de Tiendanube y lanzo mi carrera como speaker</b><span>Y construyendo apps con IA.</span></li>
+    </ol>
+  </div>
+</section>
+
+<!-- 7. CONSTRUIDO -->
+<section class="sec" data-theme="blanco">
+  <div class="wrap">
+    <div class="cab">
+      <span class="etq">Cosas que he construido</span>
+      <h2 class="h2">No solo lo explico. Lo construyo<span class="eg-punto eg-punto--acento"></span></h2>
+    </div>
+    <div class="proyectos">
+      <article class="proyecto"><span class="tipo">App · IA</span><h3 class="h3">Content OS</h3><p>Crea contenido con IA como si tuvieras un consultor de marketing al lado. <a href="https://studiocontent.app" target="_blank" rel="noopener">studiocontent.app</a></p></article>
+      <article class="proyecto"><span class="tipo">App · evento</span><h3 class="h3">App de The Summit</h3><p>Agenda, stands, pasaporte y fotos para los asistentes de The Summit ANADIC MX 2026.</p></article>
+      <article class="proyecto"><span class="tipo">Plataforma</span><h3 class="h3">ucreators</h3><p>Conecta creadores con marcas de e-commerce y hoy crece como plataforma para el crecimiento de creadores.</p></article>
+      <article class="proyecto"><span class="tipo">SaaS · fidelización</span><h3 class="h3">Jappyrate</h3><p>Encuestas y cupones para que restaurantes y hoteles cuiden a los clientes que ya tienen.</p></article>
+    </div>
+  </div>
+</section>
+
+<!-- 8. FUERA DEL TRABAJO -->
+<section class="sec" data-theme="claro">
+  <div class="wrap fuera">
+    <div>
+      <span class="etq">El geek fuera del trabajo</span>
+      <p class="grande" style="margin-top:16px">Si hay un pizarrón cerca, lo voy a usar (aunque mi letra no ayude). Me gusta explicar con ejemplos, contar chistes y armar equipos que se la pasen bien, porque cuando se pone difícil, los que disfrutan trabajar juntos se rifan juntos.</p>
+    </div>
+    <dl class="fichas">
+      <div><dt>Película</dt><dd>Interstellar. Si la sacas, cancela tu siguiente junta.</dd></div>
+      <div><dt>Herramienta</dt><dd>Un plumón y Claude.</dd></div>
+      <div><dt>Frase</dt><dd>“Mira, te lo pongo con un ejemplo.”</dd></div>
+      <div><dt>Desde</dt><dd>Veracruz, México.</dd></div>
+    </dl>
+  </div>
+</section>
+
+<!-- 9. CONTACTO -->
+<section id="contacto" class="sec contacto" data-theme="verde">
+  <div class="wrap contacto-grid">
+    <div>
+      <span class="etq">Contacto</span>
+      <h2 style="margin-top:16px">¿Platicamos? Prometo llevar plumón<span class="eg-punto eg-punto--tinta"></span></h2>
+      <div class="correo">
+        <code id="correo">marcos@elgeekmarketer.com</code>
+        <button class="eg-boton" type="button" id="copiar">Copiar correo</button>
+      </div>
+      <div class="redes" aria-label="Redes sociales">
+        <a href="https://www.instagram.com/elgeekmarketer" target="_blank" rel="noopener">Instagram</a>
+        <a href="https://www.tiktok.com/@elgeekmarketer" target="_blank" rel="noopener">TikTok</a>
+        <a href="https://www.linkedin.com/in/elgeekmarketer" target="_blank" rel="noopener">LinkedIn</a>
+        <a href="https://www.threads.net/@elgeekmarketer" target="_blank" rel="noopener">Threads</a>
+      </div>
+    </div>
+    <video class="video-marca" src="video/intro-02.mp4" poster="video/poster.jpg" autoplay muted loop playsinline aria-label="Animación del logotipo de el geek."></video>
+  </div>
+</section>
+</main>
+
+<footer class="sec" data-theme="oscuro">
+  <div class="wrap">
+    <span data-eg-logo="blanco" style="height:22px"></span>
+    <span>© 2026 el geek. · Veracruz, México</span>
+  </div>
+</footer>
+
+<div class="barra-movil"><a class="eg-boton eg-boton--lima" href="#charlas">Invítame a una charla</a></div>
+
+<script>
+/* @ds-bundle: {"format":4,"namespace":"ElGeek","components":[]} */
+/* el geek. — utilidades de marca (script clásico, sin dependencias).
+   ElGeek.logo(variante)  -> string SVG del logotipo real (vectores del archivo original).
+   ElGeek.hidratar(raiz) -> reemplaza cada [data-eg-logo="variante"] por su SVG.
+   Variantes: principal | blanco | blanco-1tinta | alterna | tinta */
+(function () {
+  var C = { verde: "#00BF63", lima: "#C1FF72", tinta: "#0B1A14", blanco: "#FFFFFF" };
+  var VAR = {
+    "principal":     { t: C.blanco, s: C.lima, bg: C.verde },
+    "blanco":        { t: C.blanco, s: C.lima },
+    "blanco-1tinta": { t: C.blanco, s: C.blanco },
+    "alterna":       { t: C.verde,  s: C.lima },
+    "tinta":         { t: C.tinta,  s: C.tinta }
+  };
+  var TIGHT = "7.9 42.9 733.9 204.7", PAD = "-47.3 -12.3 844.1 314.9";
+  function cuerpo(t, s) { return `<g fill="${t}"><path transform="translate(1.5 203.7)" d="M 69.55 -24.2 C 73.05 -24.2 76.55 -24.77 80.03 -25.92 C 83.51 -27.07 86.71 -28.75 89.64 -30.98 C 92.58 -33.21 94.99 -35.95 96.89 -39.19 L 119.47 -22.08 C 114.54 -15.52 109.3 -10.48 103.77 -6.94 C 98.23 -3.39 92.55 -0.97 86.7 0.34 C 80.87 1.66 74.98 2.33 69.05 2.33 C 60.07 2.33 51.77 1.08 44.14 -1.41 C 36.52 -3.91 29.88 -7.69 24.25 -12.75 C 18.61 -17.81 14.24 -24.17 11.14 -31.83 C 8.04 -39.49 6.48 -48.49 6.48 -58.83 C 6.48 -68.47 7.86 -77.16 10.62 -84.89 C 13.39 -92.62 17.34 -99.22 22.47 -104.69 C 27.6 -110.16 33.73 -114.34 40.84 -117.23 C 47.97 -120.14 55.88 -121.59 64.59 -121.59 C 72.69 -121.59 80.11 -120.27 86.86 -117.64 C 93.61 -115 99.46 -111.19 104.42 -106.2 C 109.39 -101.21 113.22 -95.16 115.92 -88.03 C 118.62 -80.91 119.97 -72.82 119.97 -63.78 C 119.97 -62.56 119.95 -61.43 119.92 -60.39 C 119.89 -59.35 119.79 -58.15 119.61 -56.8 C 119.44 -55.44 119.19 -53.69 118.86 -51.53 L 40.91 -51.53 C 41.04 -46.06 42.35 -41.29 44.84 -37.2 C 47.34 -33.12 50.73 -29.93 55.02 -27.64 C 59.3 -25.35 64.15 -24.2 69.55 -24.2Z M 64.09 -96.28 C 59.16 -96.28 55.13 -95.37 51.98 -93.55 C 48.85 -91.72 46.45 -89.33 44.8 -86.36 C 43.14 -83.39 42.05 -80.11 41.52 -76.53 L 86.45 -76.53 C 85.71 -82.54 83.5 -87.33 79.83 -90.91 C 76.15 -94.49 70.91 -96.28 64.09 -96.28Z M 64.09 -96.28 "/><path transform="translate(112.59 203.7)" d="M 15.19 0 L 15.19 -160.77 L 49.41 -160.77 L 49.41 0Z M 15.19 0 "/><path transform="translate(200.72 203.7)" d="M 63.17 43.84 C 58.11 43.84 52.84 43.38 47.38 42.47 C 41.91 41.56 36.6 40.04 31.44 37.91 C 26.27 35.78 21.52 32.91 17.2 29.3 C 12.89 25.69 9.38 21.22 6.69 15.89 L 33.81 2.62 C 37.66 8.5 41.89 12.65 46.52 15.08 C 51.14 17.52 56.25 18.73 61.86 18.73 C 66.32 18.73 70.5 17.87 74.41 16.14 C 78.32 14.42 81.48 11.6 83.88 7.69 C 86.27 3.78 87.47 -1.52 87.47 -8.2 L 87.47 -19.03 L 86.27 -19.03 C 83.69 -14.51 79.72 -10.83 74.36 -8 C 68.99 -5.16 62.6 -3.75 55.17 -3.75 C 48.29 -3.75 41.88 -5.08 35.94 -7.75 C 30 -10.41 24.8 -14.28 20.34 -19.34 C 15.89 -24.41 12.44 -30.56 9.97 -37.81 C 7.51 -45.07 6.28 -53.32 6.28 -62.56 C 6.28 -72.14 7.55 -80.6 10.08 -87.92 C 12.61 -95.24 16.08 -101.4 20.5 -106.39 C 24.93 -111.39 30.05 -115.17 35.89 -117.73 C 41.72 -120.3 47.98 -121.59 54.67 -121.59 C 61.08 -121.59 67.07 -120.3 72.64 -117.73 C 78.21 -115.17 82.65 -111.3 85.95 -106.11 L 87.38 -106.11 L 87.38 -119.27 L 121.48 -119.27 L 121.48 -9.83 C 121.48 -1.32 120.32 6 117.98 12.14 C 115.66 18.29 112.49 23.4 108.47 27.48 C 104.46 31.57 99.94 34.8 94.91 37.2 C 89.88 39.6 84.64 41.3 79.17 42.31 C 73.7 43.33 68.37 43.84 63.17 43.84Z M 65.61 -29.56 C 73.43 -29.56 79.48 -32.34 83.77 -37.91 C 88.05 -43.48 90.2 -51.49 90.2 -61.95 C 90.2 -68.5 89.25 -74.24 87.36 -79.17 C 85.47 -84.1 82.68 -87.94 78.97 -90.7 C 75.26 -93.47 70.67 -94.86 65.2 -94.86 C 57.44 -94.86 51.43 -91.96 47.17 -86.16 C 42.92 -80.35 40.8 -72.29 40.8 -61.95 C 40.8 -51.96 42.92 -44.07 47.17 -38.27 C 51.43 -32.46 57.58 -29.56 65.61 -29.56Z M 65.61 -29.56 "/><path transform="translate(321.22 203.7)" d="M 69.55 -24.2 C 73.05 -24.2 76.55 -24.77 80.03 -25.92 C 83.51 -27.07 86.71 -28.75 89.64 -30.98 C 92.58 -33.21 94.99 -35.95 96.89 -39.19 L 119.47 -22.08 C 114.54 -15.52 109.3 -10.48 103.77 -6.94 C 98.23 -3.39 92.55 -0.97 86.7 0.34 C 80.87 1.66 74.98 2.33 69.05 2.33 C 60.07 2.33 51.77 1.08 44.14 -1.41 C 36.52 -3.91 29.88 -7.69 24.25 -12.75 C 18.61 -17.81 14.24 -24.17 11.14 -31.83 C 8.04 -39.49 6.48 -48.49 6.48 -58.83 C 6.48 -68.47 7.86 -77.16 10.62 -84.89 C 13.39 -92.62 17.34 -99.22 22.47 -104.69 C 27.6 -110.16 33.73 -114.34 40.84 -117.23 C 47.97 -120.14 55.88 -121.59 64.59 -121.59 C 72.69 -121.59 80.11 -120.27 86.86 -117.64 C 93.61 -115 99.46 -111.19 104.42 -106.2 C 109.39 -101.21 113.22 -95.16 115.92 -88.03 C 118.62 -80.91 119.97 -72.82 119.97 -63.78 C 119.97 -62.56 119.95 -61.43 119.92 -60.39 C 119.89 -59.35 119.79 -58.15 119.61 -56.8 C 119.44 -55.44 119.19 -53.69 118.86 -51.53 L 40.91 -51.53 C 41.04 -46.06 42.35 -41.29 44.84 -37.2 C 47.34 -33.12 50.73 -29.93 55.02 -27.64 C 59.3 -25.35 64.15 -24.2 69.55 -24.2Z M 64.09 -96.28 C 59.16 -96.28 55.13 -95.37 51.98 -93.55 C 48.85 -91.72 46.45 -89.33 44.8 -86.36 C 43.14 -83.39 42.05 -80.11 41.52 -76.53 L 86.45 -76.53 C 85.71 -82.54 83.5 -87.33 79.83 -90.91 C 76.15 -94.49 70.91 -96.28 64.09 -96.28Z M 64.09 -96.28 "/><path transform="translate(432.31 203.7)" d="M 69.55 -24.2 C 73.05 -24.2 76.55 -24.77 80.03 -25.92 C 83.51 -27.07 86.71 -28.75 89.64 -30.98 C 92.58 -33.21 94.99 -35.95 96.89 -39.19 L 119.47 -22.08 C 114.54 -15.52 109.3 -10.48 103.77 -6.94 C 98.23 -3.39 92.55 -0.97 86.7 0.34 C 80.87 1.66 74.98 2.33 69.05 2.33 C 60.07 2.33 51.77 1.08 44.14 -1.41 C 36.52 -3.91 29.88 -7.69 24.25 -12.75 C 18.61 -17.81 14.24 -24.17 11.14 -31.83 C 8.04 -39.49 6.48 -48.49 6.48 -58.83 C 6.48 -68.47 7.86 -77.16 10.62 -84.89 C 13.39 -92.62 17.34 -99.22 22.47 -104.69 C 27.6 -110.16 33.73 -114.34 40.84 -117.23 C 47.97 -120.14 55.88 -121.59 64.59 -121.59 C 72.69 -121.59 80.11 -120.27 86.86 -117.64 C 93.61 -115 99.46 -111.19 104.42 -106.2 C 109.39 -101.21 113.22 -95.16 115.92 -88.03 C 118.62 -80.91 119.97 -72.82 119.97 -63.78 C 119.97 -62.56 119.95 -61.43 119.92 -60.39 C 119.89 -59.35 119.79 -58.15 119.61 -56.8 C 119.44 -55.44 119.19 -53.69 118.86 -51.53 L 40.91 -51.53 C 41.04 -46.06 42.35 -41.29 44.84 -37.2 C 47.34 -33.12 50.73 -29.93 55.02 -27.64 C 59.3 -25.35 64.15 -24.2 69.55 -24.2Z M 64.09 -96.28 C 59.16 -96.28 55.13 -95.37 51.98 -93.55 C 48.85 -91.72 46.45 -89.33 44.8 -86.36 C 43.14 -83.39 42.05 -80.11 41.52 -76.53 L 86.45 -76.53 C 85.71 -82.54 83.5 -87.33 79.83 -90.91 C 76.15 -94.49 70.91 -96.28 64.09 -96.28Z M 64.09 -96.28 "/><path transform="translate(543.4 203.7)" d="M 98 0 L 65.61 -51.33 L 49.41 -35.12 L 49.41 0 L 15.19 0 L 15.19 -160.77 L 49.41 -160.77 L 49.41 -74.52 L 92.73 -119.27 L 133.84 -119.27 L 87.58 -73.09 L 137.28 0Z M 98 0 "/></g><rect x="686.52" y="168.42" width="55.19" height="55.19" fill="${s}"/>`; }
+  function logo(variante) {
+    var v = VAR[variante] || VAR.blanco;
+    var vb = v.bg ? PAD : TIGHT, p = vb.split(" ");
+    var bg = v.bg ? '<rect x="' + p[0] + '" y="' + p[1] + '" width="' + p[2] + '" height="' + p[3] + '" fill="' + v.bg + '"/>' : "";
+    return '<svg xmlns="http://www.w3.org/2000/svg" viewBox="' + vb + '" role="img" aria-label="el geek."><title>el geek.</title>' + bg + cuerpo(v.t, v.s) + "</svg>";
+  }
+  function hidratar(raiz) {
+    (raiz || document).querySelectorAll("[data-eg-logo]").forEach(function (el) {
+      el.classList.add("eg-logo");
+      el.innerHTML = logo(el.getAttribute("data-eg-logo"));
+    });
+  }
+  window.ElGeek = { colores: C, variantes: Object.keys(VAR), logo: logo, hidratar: hidratar };
+  if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", function () { hidratar(); });
+  else hidratar();
+})();
+
+</script>
+<script>
+(function(){
+    var b=document.getElementById('copiar'), c=document.getElementById('correo');
+  b.addEventListener('click',function(){
+    var t=c.textContent;
+    function sel(){var r=document.createRange();r.selectNodeContents(c);var s=getSelection();s.removeAllRanges();s.addRange(r);b.textContent='Selecciónalo y cópialo';}
+    try{navigator.clipboard.writeText(t).then(function(){b.textContent='Copiado';setTimeout(function(){b.textContent='Copiar correo'},2000)},sel);}catch(e){sel();}
+  });
+  var v=document.querySelector('.video-marca');
+  if(window.matchMedia('(prefers-reduced-motion: reduce)').matches&&v){v.removeAttribute('autoplay');v.pause();}
+})();
+</script>
+
+</body>
+</html>
