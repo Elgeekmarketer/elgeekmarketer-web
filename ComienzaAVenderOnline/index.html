@@ -73,6 +73,8 @@ input:focus,select:focus{outline:none;border-color:var(--verde);background:var(-
 .btn:focus-visible,input:focus-visible,select:focus-visible,a:focus-visible{outline:3px solid var(--verde);outline-offset:2px}
 .btn.lima{background:var(--lima);color:var(--tinta)}
 .btn.lima .arr{background:var(--tinta);color:var(--lima)}
+.optin{display:flex;gap:10px;align-items:flex-start;font-size:14px;color:var(--gris);line-height:1.4;cursor:pointer}
+.optin input{width:18px;height:18px;margin-top:1px;flex:none;accent-color:var(--verde)}
 .under{font-size:14px;color:var(--gris);text-align:center}
 .form-msg{font-size:15px;border-radius:12px;padding:12px 14px;background:var(--beige)}
 
@@ -243,12 +245,12 @@ if(META_PIXEL_ID){!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.
         <span class="pill">Gratis</span>
       </div>
 
-      <form class="signup" id="signup" method="POST" action="PEGA_AQUI_URL_DEL_FORMULARIO_DE_BREVO" novalidate>
+      <form class="signup" id="signup" method="POST" action="https://faaf1a25.sibforms.com/v2/serve/MUIFADXySJJNJ9t9_Rgtpj766Dokfi4G120WCjx2_y6912ij1FZXleIi-79kWRh4Quus_jUte1wetHYm7wz6EVp_TFVG-YZ8QSk44CF9I0CEqjCIWS5ZOuCZKimJp1icguo3FrBqXCoQaaKc_hiHgFPmlapH7SHLkSwLITNn9T5DgK7IOhKPZuJlH45zvwuv6sPjvYMnnwlQFon1" novalidate>
         <h2>Aparta tu lugar</h2>
         <div class="row">
           <div class="field">
-            <label for="FIRSTNAME">Nombre</label>
-            <input id="FIRSTNAME" name="FIRSTNAME" type="text" autocomplete="given-name" placeholder="¿Cómo te llamas?" required>
+            <label for="NOMBRE">Nombre</label>
+            <input id="NOMBRE" name="NOMBRE" type="text" autocomplete="given-name" placeholder="¿Cómo te llamas?" required>
           </div>
           <div class="field">
             <label for="EMAIL">Correo</label>
@@ -257,8 +259,8 @@ if(META_PIXEL_ID){!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.
         </div>
         <div class="row">
           <div class="field">
-            <label for="WHATSAPP">WhatsApp</label>
-            <input id="WHATSAPP" name="WHATSAPP" type="tel" autocomplete="tel" inputmode="tel" placeholder="10 dígitos" required>
+            <label for="SMS">WhatsApp</label>
+            <input id="SMS" name="SMS" type="tel" autocomplete="tel" inputmode="tel" placeholder="10 dígitos" required>
           </div>
           <div class="field">
             <label for="VENDE_EN_LINEA">¿Ya vendes en línea?</label>
@@ -271,8 +273,10 @@ if(META_PIXEL_ID){!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.
           </div>
         </div>
         <input type="text" name="email_address_check" value="" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-5000px">
+        <input type="hidden" name="SMS__COUNTRY_CODE" value="+52">
         <input type="hidden" name="locale" value="es">
         <input type="hidden" name="html_type" value="simple">
+        <label class="optin"><input type="checkbox" id="OPT_IN" name="OPT_IN" value="1" required> Acepto recibir correos y mensajes de el geek sobre este evento.</label>
         <button class="btn" type="submit" id="submit-btn">Apartar mi lugar gratis <span class="arr" aria-hidden="true">→</span></button>
         <p class="under">Te mando el link de Zoom a tu correo y un recordatorio por WhatsApp. Cero spam.</p>
         <p class="form-msg" id="form-msg" hidden></p>
@@ -483,8 +487,8 @@ if(META_PIXEL_ID){!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.
   form.addEventListener('submit', function(e){
     e.preventDefault();
     var f = form.elements;
-    if(!f.FIRSTNAME.value.trim() || !/^\S+@\S+\.\S+$/.test(f.EMAIL.value.trim()) || f.WHATSAPP.value.replace(/\D/g,'').length < 10 || !f.VENDE_EN_LINEA.value){
-      show('Revisa tus datos: nombre, un correo válido, WhatsApp de 10 dígitos y elige una opción.');
+    if(!f.NOMBRE.value.trim() || !/^\S+@\S+\.\S+$/.test(f.EMAIL.value.trim()) || f.SMS.value.replace(/\D/g,'').length < 10 || !f.VENDE_EN_LINEA.value || !f.OPT_IN.checked){
+      show('Revisa tus datos: nombre, un correo válido, WhatsApp de 10 dígitos, elige una opción y acepta recibir mensajes.');
       return;
     }
     if(f.email_address_check.value){ return; }
@@ -497,7 +501,10 @@ if(META_PIXEL_ID){!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.
       return;
     }
     btn.disabled = true; btn.firstChild.nodeValue = 'Apartando tu lugar… ';
-    fetch(form.action, { method:'POST', mode:'no-cors', body:new FormData(form) })
+    var data = new FormData(form);
+    data.set('SMS', f.SMS.value.replace(/\D/g,'').slice(-10));
+    data.delete('VENDE_EN_LINEA');  // el formulario de Brevo aún no tiene este campo
+    fetch(form.action, { method:'POST', mode:'no-cors', body:data })
       .then(function(){ if(window.fbq){fbq('track','Lead');} setTimeout(function(){ window.location.href = GRACIAS; }, 300); })
       .catch(function(){
         btn.disabled = false; btn.firstChild.nodeValue = 'Apartar mi lugar gratis ';
