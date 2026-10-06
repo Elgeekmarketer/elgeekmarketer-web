@@ -353,9 +353,9 @@ if(META_PIXEL_ID){!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.
             <label for="VENDE_EN_LINEA">¿Ya vendes en línea?</label>
             <select id="VENDE_EN_LINEA" name="VENDE_EN_LINEA" required>
               <option value="" selected disabled>Elige una opción</option>
-              <option value="Todavía no">Todavía no</option>
-              <option value="Sí, por redes o WhatsApp">Sí, por redes o WhatsApp</option>
-              <option value="Sí, con tienda en línea">Sí, ya tengo tienda en línea</option>
+              <option value="Aún no vendo en línea">Todavía no</option>
+              <option value="Vendo por whatsapp">Sí, por redes o WhatsApp</option>
+              <option value="Ya vendo con mi tienda en línea">Sí, ya tengo tienda en línea</option>
             </select>
           </div>
         </div>
@@ -363,7 +363,8 @@ if(META_PIXEL_ID){!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.
         <input type="hidden" name="SMS__COUNTRY_CODE" value="+52">
         <input type="hidden" name="locale" value="es">
         <input type="hidden" name="html_type" value="simple">
-        <label class="optin"><input type="checkbox" id="OPT_IN" name="OPT_IN" value="1" required> Acepto recibir correos y mensajes de el geek sobre este evento.</label>
+        <label class="optin"><input type="checkbox" id="OPT_IN" name="OPT_IN" value="1" required> Acepto recibir correos de este evento y de futuros eventos de marketing y ecommerce.</label>
+        <div class="g-recaptcha" data-sitekey="6LdYR-EtAAAAACXc9mRqwioPH8-lEQLqMCm-c2Sy"></div>
         <button class="btn" type="submit" id="submit-btn">Apartar mi lugar gratis <span class="arr" aria-hidden="true">→</span></button>
         <p class="under">Te mando el link de Zoom a tu correo y un recordatorio por WhatsApp. Cero spam.</p>
         <p class="form-msg" id="form-msg" hidden></p>
@@ -597,7 +598,11 @@ if(META_PIXEL_ID){!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.
     e.preventDefault();
     var f = form.elements;
     if(!f.NOMBRE.value.trim() || !/^\S+@\S+\.\S+$/.test(f.EMAIL.value.trim()) || f.SMS.value.replace(/\D/g,'').length < 10 || !f.VENDE_EN_LINEA.value || !f.OPT_IN.checked){
-      show('Revisa tus datos: nombre, un correo válido, WhatsApp de 10 dígitos, elige una opción y acepta recibir mensajes.');
+      show('Revisa tus datos: nombre, un correo válido, WhatsApp de 10 dígitos, elige una opción y acepta recibir correos.');
+      return;
+    }
+    if(!window.grecaptcha || !grecaptcha.getResponse()){
+      show('Marca la casilla "No soy un robot".');
       return;
     }
     if(f.email_address_check.value){ return; }
@@ -612,16 +617,25 @@ if(META_PIXEL_ID){!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.
     btn.disabled = true; btn.firstChild.nodeValue = 'Apartando tu lugar… ';
     var data = new FormData(form);
     data.set('SMS', f.SMS.value.replace(/\D/g,'').slice(-10));
-    data.delete('VENDE_EN_LINEA');  // el formulario de Brevo aún no tiene este campo
-    fetch(form.action, { method:'POST', mode:'no-cors', body:data })
-      .then(function(){ if(window.fbq){fbq('track','Lead');} setTimeout(function(){ window.location.href = GRACIAS; }, 300); })
-      .catch(function(){
-        btn.disabled = false; btn.firstChild.nodeValue = 'Apartar mi lugar gratis ';
-        show('No se pudo enviar. Revisa tu conexión e inténtalo de nuevo.');
-      });
+    data.delete('VENDE_EN_LINEA');
+    data.set('YA_VENDES_EN_LINEA[]', JSON.stringify([f.VENDE_EN_LINEA.value]));  // Brevo guarda esta opción múltiple como lista JSON
+    function fail(t){
+      btn.disabled = false; btn.firstChild.nodeValue = 'Apartar mi lugar gratis ';
+      if(window.grecaptcha){ grecaptcha.reset(); }
+      show(t);
+    }
+    fetch(form.action, { method:'POST', body:data })
+      .then(function(r){ return r.json(); })
+      .then(function(res){
+        if(!res || !res.success){ fail('No pudimos registrarte. Revisa tus datos e inténtalo de nuevo.'); return; }
+        if(window.fbq){fbq('track','Lead');}
+        setTimeout(function(){ window.location.href = GRACIAS; }, 300);
+      })
+      .catch(function(){ fail('No se pudo enviar. Revisa tu conexión e inténtalo de nuevo.'); });
   });
 })();
 </script>
 
+<script src="https://www.google.com/recaptcha/api.js?hl=es" async defer></script>
 </body>
 </html>
