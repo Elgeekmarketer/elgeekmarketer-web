@@ -45,6 +45,9 @@ p{margin:0}
 .brand b{display:inline-block;width:9px;height:9px;background:var(--lima);margin-left:1px;vertical-align:baseline}
 .brand .bar{width:1px;height:20px;background:var(--tinta);opacity:.35}
 .brand small{font-family:var(--f-kicker);font-weight:500;font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--gris)}
+.lead{display:flex;align-items:center;gap:16px;min-width:0}
+.partner{display:inline-flex;background:var(--tinta);border-radius:999px;padding:3px;flex:none}
+.partner img{display:block;height:32px;width:auto}
 .top-cta{font-family:var(--f-kicker);font-weight:700;font-size:13px;letter-spacing:.08em;text-transform:uppercase;text-decoration:none;border:1.5px solid var(--tinta);border-radius:999px;padding:9px 16px;white-space:nowrap}
 .top-cta:hover{background:var(--tinta);color:var(--blanco)}
 
@@ -216,6 +219,9 @@ h1 .hl,h2 .hl{background:linear-gradient(transparent 16%,var(--lima) 16%)}
 @media (max-width:640px){
   body{font-size:16px}
   .top small,.brand .bar{display:none}
+  .lead{gap:12px}
+  .partner img{height:24px}
+  .top-cta{display:none}
   .row{grid-template-columns:1fr}
   .who,.bonus{grid-template-columns:1fr}
   section.blk{padding-block:60px}
@@ -314,7 +320,10 @@ if(META_PIXEL_ID){!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.
 <body>
 <header class="top">
   <div class="wrap">
-    <a class="brand" href="#">el geek<b aria-hidden="true"></b><span class="bar" aria-hidden="true"></span><small>Evento en vivo</small></a>
+    <div class="lead">
+      <a class="brand" href="#">el geek<b aria-hidden="true"></b><span class="bar" aria-hidden="true"></span><small>Evento en vivo</small></a>
+      <span class="partner"><img src="partner-tiendanube.png" alt="Partner oficial Tiendanube México" width="219" height="32"></span>
+    </div>
     <a class="top-cta" href="#registro">Aparta tu lugar</a>
   </div>
 </header>
