@@ -1,0 +1,665 @@
+<!doctype html><html><head><meta charset=utf8><meta name="robots" content="noindex, nofollow">
+<link rel="icon" href="/favicon.ico" sizes="32x32">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="manifest" href="/site.webmanifest">
+<meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#faf9f5;color:#141413}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>El Mejor Mes del Año</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700;800&family=Inter:wght@400;500;600&family=Space+Grotesk:wght@500;700&display=swap">
+<style>
+/* Layout: panel de consultoría — hero tinta, secciones sobre beige, una herramienta (generador) como pieza central */
+:root{
+  --bg:#F2EFE6; --surface:#FFFFFF; --ink:#0B1A14; --muted:#4D5C54; --line:#DCD7C9;
+  --green:#00BF63; --green-ink:#00793F; --lime:#C1FF72; --on-lime:#0B1A14;
+  --hero:#0B1A14; --hero-fg:#F2EFE6; --hero-muted:#A7B6AD; --chip:#E7E3D6;
+  --f-display:"Poppins",ui-sans-serif,system-ui,sans-serif;
+  --f-body:"Inter",ui-sans-serif,system-ui,sans-serif;
+  --f-tech:"Space Grotesk",ui-monospace,"SF Mono",monospace;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#0B1A14; --surface:#12261D; --ink:#EEF1EA; --muted:#A3B3AA; --line:#25392F;
+  --green:#19C976; --green-ink:#6BE6A8; --hero:#102219; --hero-fg:#F2EFE6; --hero-muted:#A7B6AD; --chip:#1B3227; color-scheme:dark }}
+:root[data-theme="dark"]{
+  --bg:#0B1A14; --surface:#12261D; --ink:#EEF1EA; --muted:#A3B3AA; --line:#25392F;
+  --green:#19C976; --green-ink:#6BE6A8; --hero:#102219; --hero-fg:#F2EFE6; --hero-muted:#A7B6AD; --chip:#1B3227; color-scheme:dark }
+
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font:400 16px/1.6 var(--f-body);padding-inline:16px;padding-block:0 64px}
+.wrap{max-width:1080px;margin:0 auto}
+h1,h2,h3,h4{font-family:var(--f-display);line-height:1.15;margin:0;text-wrap:balance}
+p{margin:0}
+.kicker{font:700 12px/1.2 var(--f-tech);letter-spacing:.12em;text-transform:uppercase;color:var(--green-ink)}
+.hl{background:var(--lime);color:var(--on-lime);padding:0 .18em;border-radius:4px;box-decoration-break:clone;-webkit-box-decoration-break:clone}
+.sq{display:inline-block;width:.42em;height:.42em;background:var(--lime);margin-left:.06em;vertical-align:baseline}
+.muted{color:var(--muted)}
+.num{font-variant-numeric:tabular-nums}
+
+/* nav */
+nav.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:10;background:var(--bg);border-bottom:1px solid var(--line);margin-inline:-16px;padding:10px 16px}
+nav.top .wrap{display:flex;align-items:center;gap:16px;flex-wrap:wrap}
+.brand{font:800 18px/1 var(--f-display);letter-spacing:-.02em;color:var(--ink);text-decoration:none}
+.duo{display:flex;align-items:center;gap:10px}
+.duo .x{font:600 14px/1 var(--f-tech);color:var(--muted)}
+.duo img{display:block;height:28px;width:auto}
+nav.top ul{display:flex;gap:4px;list-style:none;margin:0 0 0 auto;padding:0;flex-wrap:wrap}
+nav.top a.tab{display:block;padding:6px 10px;border-radius:999px;font:600 13px/1.2 var(--f-body);color:var(--muted);text-decoration:none}
+nav.top a.tab:hover,nav.top a.tab:focus-visible{background:var(--chip);color:var(--ink)}
+
+/* hero */
+.hero{background:var(--hero);color:var(--hero-fg);border-radius:20px;margin-top:20px;padding:40px clamp(20px,5vw,56px);display:grid;gap:28px;position:relative;overflow:hidden}
+.hero .kicker{color:var(--lime)}
+.hero h1{font-size:clamp(40px,7.5vw,84px);font-weight:800;letter-spacing:-.035em}
+.hero .lead{max-width:60ch;color:var(--hero-muted);font-size:18px}
+.hero .dots{position:absolute;right:28px;top:28px;display:grid;grid-template-columns:repeat(3,8px);gap:6px;opacity:.8}
+.hero .dots i{width:8px;height:8px;background:var(--lime)}
+.facts{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:1px;background:rgba(242,239,230,.14);border-radius:12px;overflow:hidden}
+.fact{background:var(--hero);padding:16px 18px;display:grid;gap:4px}
+.fact b{font:700 26px/1.1 var(--f-display);letter-spacing:-.02em}
+.fact span{font:500 12px/1.3 var(--f-tech);letter-spacing:.06em;text-transform:uppercase;color:var(--hero-muted)}
+
+/* sections */
+section{padding-top:72px;scroll-margin-top:64px}
+.sec-head{display:grid;gap:10px;margin-bottom:28px;max-width:70ch}
+.sec-head h2{font-size:clamp(28px,4.2vw,42px);font-weight:800;letter-spacing:-.025em}
+.sec-head p{color:var(--muted);font-size:17px}
+.grid2{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:16px}
+.grid3{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:16px}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:24px;display:grid;gap:12px;align-content:start;min-width:0}
+.card h3{font-size:20px;font-weight:700;letter-spacing:-.01em}
+.card ul{margin:0;padding-left:1.1em;display:grid;gap:6px}
+.card li::marker{color:var(--green)}
+
+/* offer stack */
+.offer{display:grid;gap:10px}
+.offer-row{display:grid;grid-template-columns:44px 1fr;gap:14px;align-items:center;padding:14px 16px;border-radius:12px;background:var(--chip)}
+.offer-row .plus{width:44px;height:44px;border-radius:10px;background:var(--ink);color:var(--bg);display:grid;place-items:center;font:800 20px/1 var(--f-display)}
+.offer-row.main .plus{background:var(--lime);color:var(--on-lime)}
+.offer-row b{font:700 17px/1.25 var(--f-display);display:block}
+.offer-row small{color:var(--muted);font-size:14px}
+
+/* flow */
+.flow{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:10px;counter-reset:f}
+.step{border:1px solid var(--line);border-radius:12px;padding:14px;background:var(--surface);display:grid;gap:4px;min-width:0}
+.step .t{font:700 11px/1.2 var(--f-tech);letter-spacing:.1em;text-transform:uppercase;color:var(--green-ink)}
+.step b{font:700 16px/1.25 var(--f-display)}
+.step small{color:var(--muted);font-size:13.5px;line-height:1.45}
+.step.wide{border-color:var(--ink);border-width:2px}
+.note{border-left:4px solid var(--lime);background:var(--surface);padding:14px 18px;border-radius:0 12px 12px 0;font-size:15px}
+.note b{font-family:var(--f-display)}
+
+/* ejes */
+.eje{display:grid;gap:14px}
+.eje .tag{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.pill{font:600 12px/1 var(--f-tech);letter-spacing:.04em;padding:6px 10px;border-radius:999px;background:var(--chip);color:var(--ink)}
+.pill.g{background:var(--green);color:#06120C}
+.eje h3{font-size:22px;font-weight:800;letter-spacing:-.02em}
+.mock{aspect-ratio:4/5;max-width:100%;border-radius:12px;padding:18px;display:grid;align-content:space-between;gap:10px;font-family:var(--f-display);overflow:hidden;position:relative}
+.mock .mk-brand{font:700 11px/1 var(--f-tech);letter-spacing:.1em;text-transform:uppercase;opacity:.75}
+.m1{background:#0B1A14;color:#F2EFE6}
+.m1 .bub{background:#F2EFE6;color:#0B1A14;border-radius:14px;padding:10px 12px;font:600 15px/1.3 var(--f-body);max-width:85%}
+.m1 .bub.r{justify-self:end;background:#C1FF72}
+.m1 .big{font:800 26px/1.05 var(--f-display);letter-spacing:-.02em}
+.m2{background:#F2EFE6;color:#0B1A14;border:1px solid var(--line)}
+.m2 .err{font:800 34px/1 var(--f-display);letter-spacing:-.03em}
+.m2 .old{font:600 20px/1 var(--f-tech);text-decoration:line-through;text-decoration-color:#E0403A;text-decoration-thickness:3px;opacity:.6}
+.m2 .new{font:800 54px/1 var(--f-display);letter-spacing:-.04em}
+.m2 .new small{font-size:16px;font-weight:600;letter-spacing:0}
+.m2 .stat{font:700 12px/1 var(--f-tech);letter-spacing:.06em;text-transform:uppercase;background:#00BF63;color:#06120C;padding:6px 8px;border-radius:6px;justify-self:start}
+.m3{background:#00BF63;color:#06120C}
+.m3 ul{list-style:none;margin:0;padding:0;display:grid;gap:8px;font:600 15px/1.3 var(--f-body)}
+.m3 li{display:flex;justify-content:space-between;gap:8px;border-bottom:1px dashed rgba(6,18,12,.35);padding-bottom:6px}
+.m3 li.no{border:0;background:#0B1A14;color:#C1FF72;padding:8px 10px;border-radius:8px;font-weight:700}
+.m3 .big{font:800 24px/1.1 var(--f-display);letter-spacing:-.02em}
+.eje dl{margin:0;display:grid;gap:8px;font-size:15px}
+.eje dt{font:700 11px/1.2 var(--f-tech);letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+.eje dd{margin:0}
+.btn{appearance:none;border:0;cursor:pointer;font:700 14px/1 var(--f-display);padding:12px 16px;border-radius:10px;background:var(--ink);color:var(--bg);justify-self:start}
+.btn:hover{filter:brightness(1.15)}
+.btn:focus-visible,.opt:focus-within,nav a:focus-visible,select:focus-visible{outline:3px solid var(--green);outline-offset:2px}
+.btn.lime{background:var(--lime);color:var(--on-lime)}
+.btn.ghost{background:transparent;color:var(--ink);border:1px solid var(--line)}
+
+/* timeline */
+.timeline{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:0;border:1px solid var(--line);border-radius:16px;overflow:hidden;background:var(--surface)}
+.tl{padding:20px;display:grid;gap:8px;border-right:1px solid var(--line);align-content:start}
+.tl:last-child{border-right:0}
+.tl .d{font:700 13px/1 var(--f-tech);letter-spacing:.06em;color:var(--green-ink)}
+.tl h4{font-size:18px;font-weight:700}
+.tl p{font-size:14.5px;color:var(--muted)}
+.tl.peak{background:var(--chip)}
+
+/* generator */
+.gen{background:var(--hero);color:var(--hero-fg);border-radius:20px;padding:clamp(20px,4vw,40px);display:grid;gap:24px}
+.gen .kicker{color:var(--lime)}
+.gen h2{font-size:clamp(28px,4.2vw,42px);font-weight:800;letter-spacing:-.025em}
+.gen .sub{color:var(--hero-muted);max-width:65ch}
+.gen-body{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,6fr);gap:24px;align-items:start}
+@media (max-width:860px){.gen-body{grid-template-columns:1fr}}
+.ctrl{display:grid;gap:18px}
+.ctrl fieldset{border:0;margin:0;padding:0;display:grid;gap:8px;min-width:0}
+.ctrl legend{font:700 12px/1.2 var(--f-tech);letter-spacing:.12em;text-transform:uppercase;color:var(--hero-muted);margin-bottom:8px;padding:0}
+.seg{display:grid;grid-template-columns:repeat(3,1fr);gap:6px}
+.opt{position:relative;display:block;cursor:pointer}
+.opt input{position:absolute;opacity:0;pointer-events:none}
+.opt span{display:grid;gap:3px;padding:10px 12px;border-radius:10px;border:1px solid rgba(242,239,230,.18);background:rgba(242,239,230,.04);font-size:14px;line-height:1.35;transition:background .15s,border-color .15s}
+.opt span b{font:700 13px/1.2 var(--f-display);color:var(--hero-fg)}
+.opt span em{font-style:normal;color:var(--hero-muted);font-size:13px}
+.opt:hover span{border-color:rgba(242,239,230,.4)}
+.opt input:checked + span{background:var(--lime);border-color:var(--lime)}
+.opt input:checked + span b,.opt input:checked + span em{color:#0B1A14}
+.seg .opt span{text-align:center;padding:12px 6px}
+.out{background:#F7F5EE;color:#0B1A14;border-radius:14px;overflow:hidden;display:grid;min-width:0}
+.out-head{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;padding:14px 16px;border-bottom:1px solid #DCD7C9}
+.code{font:700 14px/1 var(--f-tech);letter-spacing:.06em;background:#0B1A14;color:#C1FF72;padding:7px 10px;border-radius:6px}
+.out-head .btns{display:flex;gap:8px;flex-wrap:wrap}
+.out .btn{background:#0B1A14;color:#F2EFE6;padding:10px 14px}
+.out .btn.ghost{background:transparent;color:#0B1A14;border:1px solid #CFC9B8}
+.script{padding:18px 18px 22px;display:grid;gap:16px;max-height:620px;overflow:auto}
+.blk{display:grid;gap:6px}
+.blk .lab{font:700 11px/1.2 var(--f-tech);letter-spacing:.12em;text-transform:uppercase;color:#00793F;display:flex;gap:8px;align-items:center}
+.blk .lab i{font-style:normal;color:#6B7770;letter-spacing:.04em;text-transform:none;font-weight:500}
+.blk p{font-size:15px;line-height:1.55;white-space:pre-wrap}
+.blk.hook{background:#C1FF72;border-radius:10px;padding:12px 14px}
+.blk.cta{background:#E9E5D8;border-radius:10px;padding:12px 14px}
+.toast{font:600 13px/1 var(--f-tech);color:#00793F;min-height:1em}
+.matrix{display:flex;gap:18px;flex-wrap:wrap;font-size:14px;color:var(--hero-muted)}
+.matrix b{color:var(--hero-fg);font:700 22px/1 var(--f-display);display:block;margin-bottom:4px}
+.sr{position:absolute;left:-9999px}
+
+/* pareto */
+.split{display:flex;height:64px;border-radius:12px;overflow:hidden;font-family:var(--f-display)}
+.split div{display:flex;flex-direction:column;justify-content:center;padding:0 16px;min-width:0}
+.split .a{flex:8;background:var(--green);color:#06120C}
+.split .b{flex:2;background:var(--ink);color:var(--bg)}
+.split b{font-size:18px;font-weight:800}
+.split small{font:600 12px/1.2 var(--f-tech)}
+
+/* calc */
+.calc{display:grid;gap:14px}
+.calc select{font:600 15px/1.2 var(--f-body);padding:10px 12px;border-radius:10px;border:1px solid var(--line);background:var(--bg);color:var(--ink);width:100%}
+.calc-rows{display:grid;gap:0}
+.calc-rows div{display:flex;justify-content:space-between;gap:12px;padding:8px 0;border-bottom:1px solid var(--line);font-size:15px}
+.calc-rows div b{font-variant-numeric:tabular-nums}
+.calc-total{display:flex;justify-content:space-between;align-items:baseline;gap:12px;background:var(--lime);color:var(--on-lime);padding:14px 16px;border-radius:12px}
+.calc-total b{font:800 30px/1 var(--f-display);font-variant-numeric:tabular-nums;letter-spacing:-.02em}
+
+/* cac */
+.cac-hero{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px}
+.big-stat{display:grid;gap:4px}
+.big-stat b{font:800 clamp(44px,7vw,68px)/1 var(--f-display);letter-spacing:-.04em;font-variant-numeric:tabular-nums}
+.big-stat span{color:var(--muted);font-size:15px}
+.bars{display:grid;gap:14px}
+.bar{display:grid;grid-template-columns:minmax(120px,170px) 1fr;gap:12px;align-items:center}
+.bar .lbl{font-size:14px;line-height:1.3}
+.bar .lbl small{display:block;color:var(--muted);font-size:12.5px}
+.bar .track{height:38px;background:var(--chip);border-radius:8px;position:relative;overflow:hidden}
+.bar .fill{height:100%;background:var(--green);border-radius:8px;display:flex;align-items:center;justify-content:flex-end;padding-right:10px;font:700 14px/1 var(--f-display);color:#06120C;font-variant-numeric:tabular-nums;white-space:nowrap}
+.bar.base .fill{background:var(--ink);color:var(--bg)}
+.bar .delta{font:700 12px/1 var(--f-tech);color:var(--green-ink);margin-left:6px}
+@media (max-width:520px){.bar{grid-template-columns:1fr}}
+.steps{display:grid;gap:0;counter-reset:s;margin:0;padding:0;list-style:none}
+.steps li{counter-increment:s;display:grid;grid-template-columns:36px 1fr;gap:12px;padding:12px 0;border-bottom:1px solid var(--line)}
+.steps li::before{content:counter(s);width:30px;height:30px;border-radius:8px;background:var(--ink);color:var(--bg);display:grid;place-items:center;font:700 14px/1 var(--f-display)}
+.steps li b{font-family:var(--f-display)}
+table{width:100%;border-collapse:collapse;font-size:15px}
+th,td{text-align:left;padding:10px 12px;border-bottom:1px solid var(--line)}
+th{font:700 11px/1.2 var(--f-tech);letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+td.r,th.r{text-align:right;font-variant-numeric:tabular-nums}
+.tbl{overflow-x:auto}
+footer{margin-top:72px;padding-top:20px;border-top:1px solid var(--line);display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;font-size:13px;color:var(--muted)}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
+html{scroll-behavior:smooth}
+</style>
+
+<nav class="top" aria-label="Secciones">
+  <div class="wrap">
+    <div class="duo">
+      <a class="brand" href="#inicio">el geek<span class="sq"></span></a>
+      <span class="x" aria-hidden="true">×</span>
+      <img src="cs-reporter.png" alt="CS Reporter" width="118" height="28">
+    </div>
+    <ul>
+      <li><a class="tab" href="#campana">Campaña</a></li>
+      <li><a class="tab" href="#ejes">Ejes rectores</a></li>
+      <li><a class="tab" href="#generador">Generador de guiones</a></li>
+      <li><a class="tab" href="#pauta">Pauta y conversión</a></li>
+      <li><a class="tab" href="#cac">CAC y referidos</a></li>
+    </ul>
+  </div>
+</nav>
+
+<main class="wrap" id="inicio">
+
+<header class="hero">
+  <div class="dots" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i></div>
+  <div style="display:grid;gap:14px">
+    <span class="kicker">Consultoría el geek. × CS Facturación · Noviembre 2026</span>
+    <h1>El <span class="hl">Mejor</span> Mes del Año</h1>
+    <p class="lead">Cómo ejecutar la campaña de noviembre de CS Reporter: qué decimos, cómo lo grabamos, qué probamos en pauta y cómo bajamos el costo de adquisición.</p>
+  </div>
+  <div class="facts">
+    <div class="fact"><b class="num">2 – 30 nov</b><span>Duración de campaña</span></div>
+    <div class="fact"><b class="num">$26,000</b><span>Presupuesto de anuncios</span></div>
+    <div class="fact"><b class="num">$2,900</b><span>CAC actual por cliente</span></div>
+    <div class="fact"><b class="num">+20%</b><span>Meta vs Hot Sale 2026</span></div>
+  </div>
+</header>
+
+<!-- CAMPAÑA -->
+<section id="campana">
+  <div class="sec-head">
+    <span class="kicker">De qué va la campaña</span>
+    <h2>Una oferta que nadie se espera, contada en el idioma de la categoría</h2>
+    <p>Hot Sale 2026 es la mejor promoción que han tenido. Noviembre tiene que superarla en ventas y en clientes nuevos, y además dejar un CAC más bajo.</p>
+  </div>
+
+  <div class="grid2">
+    <article class="card">
+      <span class="kicker">Objetivos</span>
+      <h3>Principal</h3>
+      <p>Superar Hot Sale 2026 en un <b>20% en monto de ventas</b> y en un <b>20% en clientes nuevos</b>.</p>
+      <h3 style="margin-top:6px">Secundarios</h3>
+      <ul>
+        <li><b>Bajar el CAC</b> de $2,900 lo más posible (propuesta del consultor).</li>
+        <li>Establecer la tasa de apertura inicial de la campaña de correo.</li>
+        <li>Establecer la tasa de apertura inicial de la campaña de WhatsApp.</li>
+      </ul>
+    </article>
+
+    <article class="card">
+      <span class="kicker">La oferta irresistible</span>
+      <h3>El precio manda. Lo demás lo vuelve imposible de ignorar.</h3>
+      <div class="offer">
+        <div class="offer-row main"><span class="plus">$</span><div><b>El precio más bajo en la historia de CS</b><small>Desde $499 + IVA. Es el driver principal.</small></div></div>
+        <div class="offer-row"><span class="plus">%</span><div><b>Hasta 70% de descuento</b><small>En los planes más grandes. Hook para probar.</small></div></div>
+        <div class="offer-row"><span class="plus">+2</span><div><b>2 meses gratis, solo las primeras 100 licencias</b><small>La escasez vive en el bono. Renuevan en enero 2028, fuera de la temporada de promos.</small></div></div>
+      </div>
+    </article>
+  </div>
+
+  <div class="grid2" style="margin-top:16px">
+    <article class="card">
+      <span class="kicker">Principio de comunicación</span>
+      <h3>Categoría antes que marca</h3>
+      <p>La gente todavía no ubica el nombre CS Reporter, pero sí sabe qué es <b>un software de descarga masiva de facturas</b>. Los anuncios abren con la categoría y la marca aparece como firma al final.</p>
+    </article>
+    <article class="card">
+      <span class="kicker">Escasez real</span>
+      <h3>Las 100 licencias no presionan el precio</h3>
+      <p>El precio dura todo noviembre. Lo que se acaba son los 2 meses gratis. Así la promesa se cumple aunque no se vendan las 100, y quien lo está pensando tiene razones para comprar en la primera semana.</p>
+    </article>
+  </div>
+
+  <div style="margin-top:28px;display:grid;gap:14px">
+    <span class="kicker">La estructura de cada video</span>
+    <div class="flow">
+      <div class="step wide"><span class="t">0 – 3 s · Hook</span><b>Amplio e intercambiable</b><small>Engancha a cualquiera. Baja el costo por impresión.</small></div>
+      <div class="step"><span class="t">Cuerpo</span><b>El problema de la categoría</b><small>Descargar facturas del SAT, estatus, reportes. Aquí se filtra quien sí le interesa.</small></div>
+      <div class="step"><span class="t">Oferta</span><b>Precio + bono</b><small>Desde $499 + IVA y 2 meses gratis para las primeras 100.</small></div>
+      <div class="step"><span class="t">Cierre · CTA</span><b>Intercambiable</b><small>WhatsApp con asesor, prueba gratis o urgencia de las 100 licencias.</small></div>
+    </div>
+    <p class="note"><b>Cómo se protege el CAC.</b> El hook amplio atrae vistas baratas, pero la campaña se optimiza a conversión (mensajes de WhatsApp y registros), no a alcance. Así Meta muestra el anuncio a quien tiene más probabilidad de comprar, aunque el arranque del video hable para todos.</p>
+  </div>
+</section>
+
+<!-- EJES -->
+<section id="ejes">
+  <div class="sec-head">
+    <span class="kicker">Ejes rectores</span>
+    <h2>Tres maneras de contar la misma oferta</h2>
+    <p>Los tres salen del brief. Cada uno tiene un tono distinto para que la pauta nos diga cuál vende mejor.</p>
+  </div>
+
+  <div class="grid3">
+    <article class="card eje">
+      <div class="tag"><span class="pill g">Eje 1</span><span class="pill">Chusco</span><span class="pill">Video actuado</span></div>
+      <h3>“Nuestro contador nos va a reclamar esto.”</h3>
+      <div class="mock m1" aria-label="Ejemplo visual del eje 1">
+        <span class="mk-brand">Junta de descuentos · noviembre</span>
+        <div style="display:grid;gap:8px">
+          <div class="bub">Bájale un poquito más…</div>
+          <div class="bub r">¿Así?</div>
+          <div class="bub">¡No! Ya te pasaste.</div>
+          <div class="bub r">…Bueno, déjalo así.</div>
+        </div>
+        <div class="big">Nuestro contador nos va a reclamar esto.</div>
+      </div>
+      <dl>
+        <div><dt>La idea</dt><dd>Dos personas deciden el descuento de noviembre en una junta y se les pasa la mano. Voltean a cámara y lo asumen.</dd></div>
+        <div><dt>Por qué funciona</dt><dd>El chiste pasa en el mundo de la audiencia: contadores y finanzas.</dd></div>
+      </dl>
+      <button class="btn" type="button" data-goto="0">Ver guion en el generador</button>
+    </article>
+
+    <article class="card eje">
+      <div class="tag"><span class="pill g">Eje 2</span><span class="pill">Incredulidad</span><span class="pill">Video + estático</span></div>
+      <h3>“Un software de descarga masiva de facturas no debería costar esto.”</h3>
+      <div class="mock m2" aria-label="Ejemplo visual del eje 2">
+        <span class="mk-brand">Descarga masiva de facturas SAT</span>
+        <div class="err">NO ES UN ERROR.</div>
+        <div style="display:grid;gap:6px">
+          <span class="old">$1,199</span>
+          <span class="new">$499 <small>+ IVA</small></span>
+        </div>
+        <span class="stat">Estatus: vigente. El precio también.</span>
+      </div>
+      <dl>
+        <div><dt>La idea</dt><dd>Nerea ve el precio y no se lo cree. Lo revisaron tres veces y no es un error de sistema.</dd></div>
+        <div><dt>Ajuste al brief</dt><dd>El eje original dice “CS Reporter no debería costar esto”. Lo abrimos a la categoría porque la marca todavía no es conocida.</dd></div>
+      </dl>
+      <button class="btn" type="button" data-goto="1">Ver guion en el generador</button>
+    </article>
+
+    <article class="card eje">
+      <div class="tag"><span class="pill g">Eje 3</span><span class="pill">FOMO con humor</span><span class="pill">Montaje rápido</span></div>
+      <h3>“Hay decisiones que se pueden dejar para después. Esta promo no.”</h3>
+      <div class="mock m3" aria-label="Ejemplo visual del eje 3">
+        <span class="mk-brand">Cosas que pueden esperar</span>
+        <ul>
+          <li><span>La dieta</span><span>el lunes</span></li>
+          <li><span>El celular nuevo</span><span>cuando ya no prenda</span></li>
+          <li><span>El inglés</span><span>el próximo año</span></li>
+          <li class="no"><span>Hasta 70% de descuento</span><span>termina el 30</span></li>
+        </ul>
+        <div class="big">Esta no se deja para después.</div>
+      </div>
+      <dl>
+        <div><dt>La idea</dt><dd>Todos posponemos cosas: la dieta, el celular, el inglés. Esta decisión es la que no se puede posponer.</dd></div>
+        <div><dt>Cuándo pesa más</dt><dd>En el cierre de campaña, junto con la urgencia de las 100 licencias.</dd></div>
+      </dl>
+      <button class="btn" type="button" data-goto="2">Ver guion en el generador</button>
+    </article>
+  </div>
+
+  <div style="margin-top:28px;display:grid;gap:14px">
+    <span class="kicker">Propuesta de reparto en el mes</span>
+    <div class="timeline">
+      <div class="tl"><span class="d num">2 – 8 NOV</span><h4>Apertura y prueba</h4><p>Ejes 1 y 2 al aire con varias versiones de hook. Correo y WhatsApp a la base anuncian la oferta y el programa de referidos.</p></div>
+      <div class="tl peak"><span class="d num">9 – 19 NOV</span><h4>Escalar ganadores y Buen Fin</h4><p>Se concentra la pauta en las 2 o 3 versiones que mejor convierten. Sugerencia: subir la inversión durante el fin de semana del Buen Fin.</p></div>
+      <div class="tl"><span class="d num">20 – 30 NOV</span><h4>Cierre con urgencia</h4><p>Entra el eje 3. Los CTA cambian a “quedan pocas licencias con 2 meses gratis” y “termina el 30”.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- GENERADOR -->
+<section id="generador">
+  <div class="gen">
+    <div style="display:grid;gap:10px">
+      <span class="kicker">Herramienta para Nerea</span>
+      <h2>Generador de guiones</h2>
+      <p class="sub">Elige un eje, un hook y un cierre. El cuerpo del video se graba una sola vez por eje; los hooks y los CTA se graban aparte y se combinan en edición. Copia el guion o el código de versión para nombrar el anuncio en Meta y saber qué combinación vende.</p>
+    </div>
+    <div class="matrix">
+      <div><b class="num">3</b>cuerpos para grabar</div>
+      <div><b class="num">4</b>hooks por eje</div>
+      <div><b class="num">3</b>cierres</div>
+      <div><b class="num">36</b>versiones posibles</div>
+    </div>
+
+    <div class="gen-body">
+      <form class="ctrl" id="genForm" onsubmit="return false">
+        <fieldset>
+          <legend>1 · Eje rector</legend>
+          <div class="seg" id="ejeOpts"></div>
+        </fieldset>
+        <fieldset>
+          <legend>2 · Hook (lo que se prueba)</legend>
+          <div id="hookOpts" style="display:grid;gap:6px"></div>
+        </fieldset>
+        <fieldset>
+          <legend>3 · Cierre y camino de compra</legend>
+          <div id="ctaOpts" style="display:grid;gap:6px"></div>
+        </fieldset>
+      </form>
+
+      <div class="out" aria-live="polite">
+        <div class="out-head">
+          <span class="code" id="vcode">CSR-E1-H1-C1</span>
+          <div class="btns">
+            <button class="btn ghost" type="button" id="copyCode">Copiar código</button>
+            <button class="btn" type="button" id="copyScript">Copiar guion</button>
+          </div>
+        </div>
+        <div class="script" id="script"></div>
+        <div style="padding:0 18px 14px"><span class="toast" id="toast"></span></div>
+        <textarea id="fallback" class="sr" aria-hidden="true" tabindex="-1"></textarea>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PAUTA -->
+<section id="pauta">
+  <div class="sec-head">
+    <span class="kicker">Pauta y conversión</span>
+    <h2>Dónde va cada peso y por qué camino compra la gente</h2>
+    <p>Hoy la mayoría de los registros llegan en planes chicos. Ahí va el grueso de la inversión, sin abandonar los planes empresariales.</p>
+  </div>
+
+  <div class="grid2">
+    <article class="card">
+      <span class="kicker">Ley de Pareto</span>
+      <h3>80 / 20 del presupuesto</h3>
+      <div class="split" role="img" aria-label="80% del presupuesto, 20,800 pesos, a planes de hasta 2,099 pesos; 20%, 5,200 pesos, a planes empresariales">
+        <div class="a"><b class="num">$20,800</b><small>80% · planes hasta $2,099</small></div>
+        <div class="b"><b class="num">$5,200</b><small>20%</small></div>
+      </div>
+      <ul>
+        <li><b>80%: Pico, Nano, Micro y Mediano.</b> Creativos con humor para contadores y PyMEs. Pueden ir por WhatsApp o por la prueba gratis.</li>
+        <li><b>20%: Empresarial y Corporativo.</b> Creativos más sobrios sobre ahorro de horas, control y cumplimiento. Siempre directo a un asesor.</li>
+        <li>Un solo Corporativo ($14,449.50 + IVA) paga más de la mitad de la pauta. Con dos, la campaña ya se pagó.</li>
+      </ul>
+    </article>
+
+    <article class="card">
+      <span class="kicker">Ritmo de inversión</span>
+      <h3>Probar primero, escalar después</h3>
+      <ul>
+        <li><b>Semana 1 (≈25%, $6,500):</b> 6 a 8 versiones al aire para encontrar los hooks ganadores. Con $26,000 no alcanza para probar las 36 a la vez.</li>
+        <li><b>Semanas 2 a 4:</b> el resto se concentra en las 2 o 3 versiones con mejor costo por conversión.</li>
+        <li><b>Buen Fin:</b> sugerencia de subir la pauta ese fin de semana, cuando la gente ya está buscando promociones.</li>
+        <li>Cada anuncio lleva su código de versión (ej. <span class="code" style="font-size:12px;padding:3px 6px">CSR-E2-H3-C1</span>) para leer resultados sin confusión.</li>
+      </ul>
+    </article>
+  </div>
+
+  <div style="margin-top:28px;display:grid;gap:14px">
+    <span class="kicker">Dos caminos de compra para medir</span>
+    <div class="grid2">
+      <article class="card">
+        <div class="tag" style="display:flex;gap:8px"><span class="pill">Camino A</span><span class="pill">CTA C2</span></div>
+        <h3>Registro y prueba de 14 días</h3>
+        <div class="flow" style="grid-template-columns:repeat(auto-fit,minmax(110px,1fr))">
+          <div class="step"><b>Anuncio</b></div><div class="step"><b>Registro</b></div><div class="step"><b>Demo 14 días</b></div><div class="step"><b>Asesor y orden</b></div>
+        </div>
+        <p class="muted">El proceso actual. Funciona, pero alguien que se registra el 20 de noviembre difícilmente alcanza a comprar dentro de la promo.</p>
+      </article>
+      <article class="card">
+        <div class="tag" style="display:flex;gap:8px"><span class="pill g">Camino B</span><span class="pill">CTA C1</span></div>
+        <h3>Directo a WhatsApp con asesor</h3>
+        <div class="flow" style="grid-template-columns:repeat(auto-fit,minmax(110px,1fr))">
+          <div class="step"><b>Anuncio</b></div><div class="step"><b>WhatsApp</b></div><div class="step"><b>Asesor aparta precio</b></div><div class="step"><b>Orden el mismo día</b></div>
+        </div>
+        <p class="muted">Activo en horario de oficina del equipo de ventas. Comparamos tasa de conversión y días a cierre contra el camino A.</p>
+      </article>
+    </div>
+  </div>
+
+  <div style="margin-top:28px" class="grid2">
+    <article class="card">
+      <span class="kicker">Para la landing de la promo</span>
+      <h3>Calculadora de ahorro</h3>
+      <p class="muted">Ejemplo de cómo se vería. Muestra cuánto se ahorra quien compra en noviembre, con los precios del brief. En la versión final también calcularía las horas que te ahorras contra descargar del SAT a mano.</p>
+    </article>
+    <article class="card calc">
+      <label for="planSel" class="kicker">Elige un plan</label>
+      <select id="planSel"></select>
+      <div class="calc-rows">
+        <div><span>Precio normal anual</span><b id="cNormal"></b></div>
+        <div><span>Precio en noviembre</span><b id="cPromo"></b></div>
+        <div><span>Ahorro en el precio</span><b id="cDiff"></b></div>
+        <div><span>Valor de los 2 meses gratis</span><b id="cBonus"></b></div>
+        <div><span>Vigencia</span><b>hasta enero 2028</b></div>
+      </div>
+      <div class="calc-total"><span>Te ahorras</span><b id="cTotal"></b></div>
+      <small class="muted">Montos + IVA, según la tabla de la promoción.</small>
+    </article>
+  </div>
+</section>
+
+<!-- CAC -->
+<section id="cac">
+  <div class="sec-head">
+    <span class="kicker">Fidelización y CAC</span>
+    <h2>Sus clientes pueden traer clientes por un tercio de lo que cuesta la pauta</h2>
+    <p>Hoy cada cliente nuevo cuesta $2,900. Un programa de referidos con una recompensa fija de $1,000 baja el costo promedio de la campaña aunque la pauta rinda igual que siempre.</p>
+  </div>
+
+  <div class="cac-hero">
+    <div class="card big-stat"><b class="num">$2,900</b><span>Costo actual por cliente nuevo</span></div>
+    <div class="card big-stat"><b class="num">≈ 9</b><span>Clientes que traen $26,000 de pauta a ese costo</span></div>
+    <div class="card big-stat" style="background:var(--lime);color:var(--on-lime);border-color:var(--lime)"><b class="num">$1,000</b><span style="color:var(--on-lime)">Costo de un cliente que llega por referido</span></div>
+  </div>
+
+  <div class="grid2" style="margin-top:16px">
+    <article class="card">
+      <span class="kicker">CAC combinado de la campaña</span>
+      <h3>Mientras más referidos, más baja el promedio</h3>
+      <div class="bars" role="img" aria-label="CAC combinado: solo pauta 2,900 pesos; con 10 referidos 1,895; con 15 referidos 1,708; con 20 referidos 1,586">
+        <div class="bar base"><span class="lbl">Solo pauta<small>9 clientes · $26,000</small></span><div class="track"><div class="fill" style="width:100%">$2,900</div></div></div>
+        <div class="bar"><span class="lbl">+ 10 referidos<small>19 clientes · $36,000</small></span><div class="track"><div class="fill" style="width:65.3%">$1,895</div></div></div>
+        <div class="bar"><span class="lbl">+ 15 referidos<small>24 clientes · $41,000</small></span><div class="track"><div class="fill" style="width:58.9%">$1,708</div></div></div>
+        <div class="bar"><span class="lbl">+ 20 referidos<small>29 clientes · $46,000</small></span><div class="track"><div class="fill" style="width:54.7%">$1,586</div></div></div>
+      </div>
+      <div class="tbl">
+        <table>
+          <thead><tr><th>Escenario</th><th class="r">Clientes</th><th class="r">Inversión</th><th class="r">CAC</th><th class="r">Cambio</th></tr></thead>
+          <tbody>
+            <tr><td>Solo pauta</td><td class="r">9</td><td class="r">$26,000</td><td class="r">$2,900</td><td class="r">—</td></tr>
+            <tr><td>+ 10 referidos</td><td class="r">19</td><td class="r">$36,000</td><td class="r">$1,895</td><td class="r">−35%</td></tr>
+            <tr><td>+ 15 referidos</td><td class="r">24</td><td class="r">$41,000</td><td class="r">$1,708</td><td class="r">−41%</td></tr>
+            <tr><td>+ 20 referidos</td><td class="r">29</td><td class="r">$46,000</td><td class="r">$1,586</td><td class="r">−45%</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </article>
+
+    <article class="card">
+      <span class="kicker">MVP del programa de referidos</span>
+      <h3>$1,000 en tarjeta de Amazon por cada cliente que traigas</h3>
+      <ol class="steps">
+        <li><div><b>Quién participa.</b> Clientes actuales, leads y quienes hicieron demo. Se lanza en la primera semana dentro de los correos y WhatsApp de remarketing.</div></li>
+        <li><div><b>Cómo se refiere.</b> Un formulario sencillo (Google Forms o Tally) donde se dejan los datos propios y los del referido.</div></li>
+        <li><div><b>Cómo se valida.</b> Cuando el referido compra, el asesor confirma por WhatsApp quién lo recomendó y lo marca en una hoja compartida.</div></li>
+        <li><div><b>Cuándo se paga.</b> Al pagar el referido, no al registrarse. Las tarjetas se entregan en un solo lote en diciembre.</div></li>
+        <li><div><b>Límites del piloto.</b> Hasta 5 referidos por persona y un tope de 15 tarjetas ($15,000) para medir sin riesgo.</div></li>
+        <li><div><b>Qué medimos.</b> Referidos registrados, referidos que compran y el CAC combinado de noviembre.</div></li>
+      </ol>
+    </article>
+  </div>
+</section>
+
+<footer>
+  <span>el geek<span class="sq"></span> · Consultoría de marketing para CS Facturación</span>
+  <span>Propuesta de ejecución · octubre 2026</span>
+</footer>
+</main>
+
+<script>
+(function(){
+  var EJES=[
+    {name:"Eje 1",short:"Nos va a reclamar",title:"Nuestro contador nos va a reclamar esto",
+     hooks:[
+      {k:"Precio más bajo",t:"NEREA (a cámara): Nunca habíamos tenido un precio tan bajo. Y no fue a propósito.\nTEXTO EN PANTALLA: El precio más bajo de nuestra historia"},
+      {k:"Hasta 70%",t:"NEREA (a cámara): Nos dejaron solos en la junta de descuentos. Terminamos en 70%.\nTEXTO EN PANTALLA: Hasta 70% de descuento"},
+      {k:"2 meses gratis",t:"NEREA (a cámara): Íbamos a regalar un mes gratis. Íbamos.\nTEXTO EN PANTALLA: +2 meses gratis"},
+      {k:"Amplio (categoría)",t:"NEREA (a cámara): ¿Sigues descargando facturas del SAT una por una? Espera a ver lo que hicimos.\nTEXTO EN PANTALLA: ¿Facturas del SAT una por una?"}],
+     body:"[ESCENA] Sala de juntas. Nerea y un compañero frente a un pizarrón con el precio de noviembre.\n\nCOMPAÑERO: Va, ¿cuánto le bajamos para noviembre?\nNEREA: (borra el precio y escribe uno nuevo) Así.\nCOMPAÑERO: Mmm… bájale un poquito más.\nNEREA: (borra otra vez) ¿Así?\nCOMPAÑERO: ¡No, no, no! Ya te pasaste.\nNEREA: (pausa, mira el pizarrón) …Bueno, ya déjalo así.\n(Los dos voltean despacio a cámara.)\n\nNEREA: Nuestro contador nos va a reclamar esto. Tú no. Un software de descarga masiva de facturas del SAT desde $499 + IVA: hasta 10,000 facturas al día, estatus ante el SAT y reportes en Excel.\nTEXTO EN PANTALLA: Desde $499 + IVA · +2 meses gratis"},
+    {name:"Eje 2",short:"No debería costar esto",title:"Un software de descarga masiva de facturas no debería costar esto",
+     hooks:[
+      {k:"Precio más bajo",t:"NEREA (seria, a cámara): Este precio no debería existir.\nTEXTO EN PANTALLA: Este precio no debería existir"},
+      {k:"Hasta 70%",t:"NEREA (a cámara): Antes de que preguntes: no, no es un error de dedo. Es hasta 70% de descuento.\nTEXTO EN PANTALLA: Hasta 70%. No es un error."},
+      {k:"2 meses gratis",t:"NEREA (a cámara): Pagas un año. Te damos catorce meses. Sí, leíste bien.\nTEXTO EN PANTALLA: Pagas 12. Usas 14."},
+      {k:"Amplio (categoría)",t:"NEREA (a cámara): ¿Cuánto crees que cuesta un software para descargar facturas masivas del SAT?\nTEXTO EN PANTALLA: ¿Cuánto crees que cuesta?"}],
+     body:"[ESCENA] Nerea frente a la laptop. Ve el precio, se acerca a la pantalla, se talla los ojos.\n\nNEREA (a cámara): No, no es un error de sistema. Ya lo revisamos tres veces.\nTEXTO EN PANTALLA: NO ES UN ERROR. $1,199 (tachado) → $499 + IVA\n\nNEREA: Un software que descarga hasta 10,000 facturas del SAT al día, te dice si están vigentes o canceladas, concilia tus pagos y te arma los reportes en Excel. No debería costar esto. Pero en noviembre, sí.\nTEXTO EN PANTALLA: Estatus: vigente. El precio también."},
+    {name:"Eje 3",short:"Esta promo no",title:"Hay decisiones que se pueden dejar para después. Esta promo no.",
+     hooks:[
+      {k:"Precio más bajo",t:"NEREA (a cámara): El precio más bajo de nuestra historia no se va a quedar a esperarte.\nTEXTO EN PANTALLA: No te va a esperar"},
+      {k:"Hasta 70%",t:"NEREA (a cámara): La dieta empieza el lunes. El 70% de descuento termina el 30.\nTEXTO EN PANTALLA: Hasta 70% · termina el 30"},
+      {k:"2 meses gratis",t:"NEREA (a cámara): Lo puedes comprar en diciembre. Pero sin los dos meses gratis.\nTEXTO EN PANTALLA: +2 meses gratis solo en noviembre"},
+      {k:"Amplio (categoría)",t:"NEREA (a cámara): ¿Cuántas cosas dejaste “para el lunes” este año?\nTEXTO EN PANTALLA: ¿Para el lunes?"}],
+     body:"[ESCENA] Montaje rápido, cortes de un segundo, Nerea en cada uno.\n\nNEREA (con tenis puestos, tirada en el sillón): La dieta… el lunes.\nNEREA (con el celular estrellado): El celular nuevo… cuando ya no prenda.\nNEREA (con un libro de inglés cerrado): El inglés… el próximo año.\n(Corte: Nerea en su escritorio, junto a una pila de facturas.)\n\nNEREA: Hay decisiones que se pueden dejar para después. Esta no: un software de descarga masiva de facturas del SAT con hasta 70% de descuento. Noviembre dura 30 días. Este precio, también.\nTEXTO EN PANTALLA: Termina el 30 de noviembre"}
+  ];
+  var CTAS=[
+    {k:"WhatsApp con asesor",d:"Camino B",t:"NEREA: Escríbenos por WhatsApp y un asesor te aparta el precio hoy mismo.\nTEXTO EN PANTALLA: Escríbenos por WhatsApp →\nFIRMA: CS Reporter · Descarga masiva de facturas del SAT"},
+    {k:"Prueba gratis",d:"Camino A",t:"NEREA: Pruébalo gratis 14 días, sin tarjeta, y quédate con el precio de noviembre.\nTEXTO EN PANTALLA: Prueba gratis →\nFIRMA: CS Reporter · Descarga masiva de facturas del SAT"},
+    {k:"Primeras 100 licencias",d:"Urgencia",t:"NEREA: Los 2 meses gratis son solo para las primeras 100 licencias. Cuando se acaben, se acabaron. Escríbenos hoy.\nTEXTO EN PANTALLA: Solo 100 licencias con +2 meses gratis\nFIRMA: CS Reporter · Descarga masiva de facturas del SAT"}
+  ];
+  var st={e:0,h:0,c:0};
+  var $=function(id){return document.getElementById(id)};
+  function esc(s){return s.replace(/[&<>"]/g,function(c){return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]})}
+  function opt(name,i,checked,label,em){
+    return '<label class="opt"><input type="radio" id="'+name+i+'" name="'+name+'" value="'+i+'"'+(checked?' checked':'')+'><span><b>'+esc(label)+'</b>'+(em?'<em>'+esc(em)+'</em>':'')+'</span></label>';
+  }
+  function first(t){return t.split("\n")[0].replace(/^NEREA[^:]*:\s*/,"")}
+  function renderOpts(){
+    $("ejeOpts").innerHTML=EJES.map(function(e,i){return opt("eje",i,i===st.e,e.name,e.short)}).join("");
+    $("hookOpts").innerHTML=EJES[st.e].hooks.map(function(h,i){return opt("hook",i,i===st.h,"H"+(i+1)+" · "+h.k,first(h.t))}).join("");
+    $("ctaOpts").innerHTML=CTAS.map(function(c,i){return opt("cta",i,i===st.c,"C"+(i+1)+" · "+c.k,c.d)}).join("");
+  }
+  function code(){return "CSR-E"+(st.e+1)+"-H"+(st.h+1)+"-C"+(st.c+1)}
+  function plain(){
+    var e=EJES[st.e],h=e.hooks[st.h],c=CTAS[st.c];
+    return code()+" · "+e.name+": "+e.title+"\n\n[HOOK 0–3 s · "+h.k+"]\n"+h.t+"\n\n[CUERPO]\n"+e.body+"\n\n[CIERRE · "+c.k+"]\n"+c.t;
+  }
+  function render(){
+    var e=EJES[st.e],h=e.hooks[st.h],c=CTAS[st.c];
+    $("vcode").textContent=code();
+    $("script").innerHTML=
+      '<div class="blk"><span class="lab">'+esc(e.name)+' <i>'+esc(e.title)+'</i></span></div>'+
+      '<div class="blk hook"><span class="lab">Hook · 0–3 s <i>'+esc(h.k)+'</i></span><p>'+esc(h.t)+'</p></div>'+
+      '<div class="blk"><span class="lab">Cuerpo <i>se graba una vez por eje</i></span><p>'+esc(e.body)+'</p></div>'+
+      '<div class="blk cta"><span class="lab">Cierre <i>'+esc(c.k)+' · '+esc(c.d)+'</i></span><p>'+esc(c.t)+'</p></div>';
+    $("toast").textContent="";
+  }
+  $("genForm").addEventListener("change",function(ev){
+    var t=ev.target; if(!t.name) return;
+    var v=+t.value;
+    if(t.name==="eje"){st.e=v;st.h=Math.min(st.h,EJES[v].hooks.length-1);renderOpts();}
+    if(t.name==="hook") st.h=v;
+    if(t.name==="cta") st.c=v;
+    render();
+  });
+  function copy(text,msg){
+    var done=function(){$("toast").textContent=msg};
+    var fb=function(){var ta=$("fallback");ta.value=text;ta.select();try{document.execCommand("copy");done()}catch(e){$("toast").textContent="Selecciona el texto y cópialo manualmente."}};
+    try{navigator.clipboard.writeText(text).then(done,fb)}catch(e){fb()}
+  }
+  $("copyScript").addEventListener("click",function(){copy(plain(),"Guion "+code()+" copiado.")});
+  $("copyCode").addEventListener("click",function(){copy(code(),"Código "+code()+" copiado.")});
+  document.querySelectorAll("[data-goto]").forEach(function(b){
+    b.addEventListener("click",function(){
+      st.e=+b.getAttribute("data-goto");st.h=0;st.c=0;renderOpts();render();
+      document.getElementById("generador").scrollIntoView({behavior:"smooth",block:"start"});
+    });
+  });
+  renderOpts();render();
+
+  // calculadora
+  var PLANES=[["Pico",1199,499],["Nano",2099,799],["Micro",2499,999],["Mediano",3999,1299],["Empresarial",14499,7249.5],["Corporativo",28899,14449.5]];
+  var fmt=function(n){return "$"+n.toLocaleString("es-MX",{minimumFractionDigits:n%1?2:0,maximumFractionDigits:2})};
+  var sel=$("planSel");
+  sel.innerHTML=PLANES.map(function(p,i){return '<option value="'+i+'"'+(i===1?' selected':'')+'>Plan '+p[0]+'</option>'}).join("");
+  function calc(){
+    var p=PLANES[+sel.value],diff=p[1]-p[2],bonus=Math.round(p[1]/12*2*100)/100;
+    $("cNormal").textContent=fmt(p[1]);$("cPromo").textContent=fmt(p[2]);
+    $("cDiff").textContent=fmt(diff);$("cBonus").textContent=fmt(bonus);
+    $("cTotal").textContent=fmt(Math.round((diff+bonus)*100)/100);
+  }
+  sel.addEventListener("change",calc);calc();
+})();
+</script>
+
+</body></html>
